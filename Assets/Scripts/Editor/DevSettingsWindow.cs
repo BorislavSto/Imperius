@@ -5,8 +5,11 @@ namespace Editor
 {
     public class DevSettingsWindow : EditorWindow
     {
-        private const string EditorPrefKey = "StartFromBootstrapScene";
-        private bool isEnabled;
+        private const string BootstrapperPrefKey = "StartFromBootstrapScene";
+        private bool bootstrapperIsEnabled;        
+        
+        private const string SpawnAtZeroPrefsKey = "SpawnAtZero";
+        private bool spawnAtZeroIsEnabled;
 
         [MenuItem("Tools/DevSettings")]
         public static void ShowWindow()
@@ -16,18 +19,26 @@ namespace Editor
 
         private void OnEnable()
         {
-            isEnabled = EditorPrefs.GetBool(EditorPrefKey, false);
+            bootstrapperIsEnabled = EditorPrefs.GetBool(BootstrapperPrefKey, false);
+            bootstrapperIsEnabled = EditorPrefs.GetBool(SpawnAtZeroPrefsKey, false);
         }
 
         private void OnGUI()
         {
             GUILayout.Label("DevSettings", EditorStyles.boldLabel);
             
-            bool newEnabled = EditorGUILayout.Toggle("Enable Bootstrapper", isEnabled);
-            if (newEnabled != isEnabled)
+            bool bootstrapper = EditorGUILayout.Toggle("Enable Bootstrapper Scene Switch on Play", bootstrapperIsEnabled);
+            if (bootstrapper != bootstrapperIsEnabled)
             {
-                isEnabled = newEnabled;
-                EditorPrefs.SetBool(EditorPrefKey, isEnabled);
+                bootstrapperIsEnabled = bootstrapper;
+                EditorPrefs.SetBool(BootstrapperPrefKey, bootstrapperIsEnabled);
+            }
+            
+            bool spawnAtZero = EditorGUILayout.Toggle("Enable Spawning Objects At 0,0,0", spawnAtZeroIsEnabled);
+            if (spawnAtZero != spawnAtZeroIsEnabled)
+            {
+                spawnAtZeroIsEnabled = spawnAtZero;
+                EditorPrefs.SetBool(SpawnAtZeroPrefsKey, spawnAtZeroIsEnabled);
             }
 
             GUILayout.Space(10);
