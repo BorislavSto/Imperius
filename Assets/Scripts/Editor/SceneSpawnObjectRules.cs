@@ -28,15 +28,20 @@ namespace Editor
 
         private static void OnHierarchyChanged()
         {
+            if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isUpdating)
+                return;
+            
             knownObjects.RemoveAll(obj => obj == null);
 
+            bool spawnAtZero = EditorPrefs.GetBool(SpawnAtZeroPrefsKey);
+            
             foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
             {
                 if (!knownObjects.Contains(obj))
                 {
                     knownObjects.Add(obj);
 
-                    if (EditorPrefs.GetBool(SpawnAtZeroPrefsKey, true))
+                    if (spawnAtZero)
                         obj.transform.position = Vector3.zero;
                 }
             }

@@ -20,7 +20,7 @@ namespace Editor
         private void OnEnable()
         {
             bootstrapperIsEnabled = EditorPrefs.GetBool(BootstrapperPrefKey, false);
-            bootstrapperIsEnabled = EditorPrefs.GetBool(SpawnAtZeroPrefsKey, false);
+            spawnAtZeroIsEnabled = EditorPrefs.GetBool(SpawnAtZeroPrefsKey, false);
         }
 
         private void OnGUI()

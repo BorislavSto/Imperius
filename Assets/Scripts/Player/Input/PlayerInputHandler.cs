@@ -5,7 +5,7 @@ namespace Player
 {
     public class PlayerInputHandler : MonoBehaviour, IInputHandler
     {
-        [SerializeField] private PlayerInputActions playerInput;
+        private PlayerInputActions playerInput;
 
         private Vector2 moveInput;
         private bool attackPressed;
@@ -18,6 +18,9 @@ namespace Player
 
         private void OnEnable()
         {
+            playerInput = new PlayerInputActions();
+            playerInput.Enable();
+            
             playerInput.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
             playerInput.Player.Move.canceled += ctx => moveInput = Vector2.zero;
 
@@ -46,7 +49,7 @@ namespace Player
 
         public float MoveHorizontal => moveInput.x;
         public float MoveVertical => moveInput.y;
-
+        
         public bool AttackPressed { get { bool temp = attackPressed; attackPressed = false; return temp; } }
         public bool DashPressed { get { bool temp = dashPressed; dashPressed = false; return temp; } }
         public bool InteractPressed { get { bool temp = interactPressed; interactPressed = false; return temp; } }
