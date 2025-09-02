@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Editor
 {
@@ -20,7 +21,7 @@ namespace Editor
         private static void RefreshKnownObjects()
         {
             knownObjects.Clear();
-            foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
+            foreach (GameObject obj in Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
             {
                 knownObjects.Add(obj);
             }
@@ -35,7 +36,7 @@ namespace Editor
 
             bool spawnAtZero = EditorPrefs.GetBool(SpawnAtZeroPrefsKey);
             
-            foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
+            foreach (GameObject obj in Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
             {
                 if (!knownObjects.Contains(obj))
                 {

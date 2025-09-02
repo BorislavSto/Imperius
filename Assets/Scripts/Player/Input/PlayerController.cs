@@ -23,11 +23,10 @@ namespace Player
         private void Awake()
         {
             characterMotor = GetComponent<KinematicCharacterMotor>();
-            inputHandler = GetComponent<IInputHandler>();
+            inputHandler = InputManager.Instance.InputHandler;
             mainCamera = Camera.main;
             characterMotor.CharacterController = this;
         }
-
       
         private void Update()
         {
@@ -38,20 +37,7 @@ namespace Player
 
             moveInputVector = (camForward * inputHandler.MoveVertical) + (camRight * inputHandler.MoveHorizontal);
             moveInputVector = Vector3.ClampMagnitude(moveInputVector, 1f);
-
-            // HandleMovement();
-            // HandleActions();
         }
-
-        // private void HandleMovement()
-        // {
-        //     throw new NotImplementedException();
-        // }
-        //
-        // private void HandleActions()
-        // {
-        //     throw new NotImplementedException();
-        // }
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
@@ -98,7 +84,7 @@ namespace Player
         
         public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
         {
-            Vector3 aimDir = inputHandler.AimDirection;
+            Vector3 aimDir = inputHandler.GetAimDirection(transform.position);
             if (aimDir.sqrMagnitude > 0.01f)
             {
                 Quaternion targetRot = Quaternion.LookRotation(aimDir, characterMotor.CharacterUp);

@@ -18,6 +18,6 @@ namespace Player
         bool Skill3Pressed { get; }
 
         // Aiming character
-        Vector3 AimDirection { get; }
+        Vector3 GetAimDirection(Vector3 originPosition);
     }
 }

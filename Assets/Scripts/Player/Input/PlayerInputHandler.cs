@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player
@@ -7,6 +8,11 @@ namespace Player
     {
         private PlayerInputActions playerInput;
 
+        // Gameplay Events
+        private Action<InputAction.CallbackContext> movePerformed;
+        private Action<InputAction.CallbackContext> moveCanceled;
+        
+        // Gameplay Variables
         private Vector2 moveInput;
         private bool attackPressed;
         private bool dashPressed;
@@ -15,64 +21,96 @@ namespace Player
         private bool special1Pressed;
         private bool special2Pressed;
         private bool special3Pressed;
-
+        
+        // UI Events
+        public event Action CancelPressedEvent;        
+        public event Action SubmitPressedEvent;        
+        
         private void OnEnable()
         {
             playerInput = new PlayerInputActions();
             playerInput.Enable();
             
-            playerInput.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-            playerInput.Player.Move.canceled += ctx => moveInput = Vector2.zero;
-
-            playerInput.Player.Attack.performed += ctx => attackPressed = true;
-            playerInput.Player.Dash.performed += ctx => dashPressed = true;
-            playerInput.Player.Interact.performed += ctx => interactPressed = true;
-            playerInput.Player.Inventory.performed += ctx => inventoryPressed = true;
-            playerInput.Player.Special1.performed += ctx => special1Pressed = true;
-            playerInput.Player.Special2.performed += ctx => special2Pressed = true;
-            playerInput.Player.Special3.performed += ctx => special3Pressed = true;
+            // Gameplay Input
+            movePerformed = ctx => moveInput = ctx.ReadValue<Vector2>();
+            moveCanceled = ctx => moveInput = Vector2.zero;
+        
+            playerInput.Gameplay.Move.performed += movePerformed;
+            playerInput.Gameplay.Move.canceled += moveCanceled;
+        
+            playerInput.Gameplay.Attack.performed += OnAttack;
+            playerInput.Gameplay.Dash.performed += OnDash;
+            playerInput.Gameplay.Interact.performed += OnInteract;
+            playerInput.Gameplay.Inventory.performed += OnInventory;
+            playerInput.Gameplay.Special1.performed += OnSpecial1;
+            playerInput.Gameplay.Special2.performed += OnSpecial2;
+            playerInput.Gameplay.Special3.performed += OnSpecial3;
+            
+            // UI Input
+            playerInput.UI.Submit.performed += OnSubmit;
+            playerInput.UI.Cancel.performed += OnCancel;
         }
-
+        
         private void OnDisable()
         {
-            playerInput.Player.Move.performed -= ctx => moveInput = ctx.ReadValue<Vector2>();
-            playerInput.Player.Move.canceled -= ctx => moveInput = Vector2.zero;
-
-            playerInput.Player.Attack.performed -= ctx => attackPressed = true;
-            playerInput.Player.Dash.performed -= ctx => dashPressed = true;
-            playerInput.Player.Interact.performed -= ctx => interactPressed = true;
-            playerInput.Player.Inventory.performed -= ctx => inventoryPressed = true;
-            playerInput.Player.Special1.performed -= ctx => special1Pressed = true;
-            playerInput.Player.Special2.performed -= ctx => special2Pressed = true;
-            playerInput.Player.Special3.performed -= ctx => special3Pressed = true;
+            // Gameplay Input
+            playerInput.Gameplay.Move.performed -= movePerformed;
+            playerInput.Gameplay.Move.canceled -= moveCanceled;
+        
+            playerInput.Gameplay.Attack.performed -= OnAttack;
+            playerInput.Gameplay.Dash.performed -= OnDash;
+            playerInput.Gameplay.Interact.performed -= OnInteract;
+            playerInput.Gameplay.Inventory.performed -= OnInventory;
+            playerInput.Gameplay.Special1.performed -= OnSpecial1;
+            playerInput.Gameplay.Special2.performed -= OnSpecial2;
+            playerInput.Gameplay.Special3.performed -= OnSpecial3;
+            
+            // UI Input
+            playerInput.UI.Submit.performed -= OnSubmit;
+            playerInput.UI.Cancel.performed -= OnCancel;
         }
+
+        private void OnAttack(InputAction.CallbackContext ctx) => attackPressed = true;
+        private void OnDash(InputAction.CallbackContext ctx) => dashPressed = true;
+        private void OnInteract(InputAction.CallbackContext ctx) => interactPressed = true;
+        private void OnInventory(InputAction.CallbackContext ctx) => inventoryPressed = true;
+        private void OnSpecial1(InputAction.CallbackContext ctx) => special1Pressed = true;
+        private void OnSpecial2(InputAction.CallbackContext ctx) => special2Pressed = true;
+        private void OnSpecial3(InputAction.CallbackContext ctx) => special3Pressed = true;
 
         public float MoveHorizontal => moveInput.x;
         public float MoveVertical => moveInput.y;
         
-        public bool AttackPressed { get { bool temp = attackPressed; attackPressed = false; return temp; } }
-        public bool DashPressed { get { bool temp = dashPressed; dashPressed = false; return temp; } }
-        public bool InteractPressed { get { bool temp = interactPressed; interactPressed = false; return temp; } }
-        public bool InventoryPressed { get { bool temp = inventoryPressed; inventoryPressed = false; return temp; } }
-        public bool Skill1Pressed { get { bool temp = special1Pressed; special1Pressed = false; return temp; } }
-        public bool Skill2Pressed { get { bool temp = special2Pressed; special2Pressed = false; return temp; } }
-        public bool Skill3Pressed { get { bool temp = special3Pressed; special3Pressed = false; return temp; } }
+        public bool AttackPressed => Consume(ref attackPressed);
+        public bool DashPressed => Consume(ref dashPressed);
+        public bool InteractPressed => Consume(ref interactPressed);
+        public bool InventoryPressed => Consume(ref inventoryPressed);
+        public bool Skill1Pressed => Consume(ref special1Pressed);
+        public bool Skill2Pressed => Consume(ref special2Pressed);
+        public bool Skill3Pressed => Consume(ref special3Pressed);
 
-        public Vector3 AimDirection
+        public Vector3 GetAimDirection(Vector3 originPosition)
         {
-            get
+            Vector3 mousePos = Mouse.current.position.ReadValue();
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Vector3 mousePos = Mouse.current.position.ReadValue();
-                Ray ray = Camera.main.ScreenPointToRay(mousePos);
-                if (Physics.Raycast(ray, out RaycastHit hit))
-                {
-                    Vector3 dir = hit.point - transform.position;
-                    dir.y = 0;
-                    return dir.normalized;
-                }
-
-                return transform.forward;
+                Vector3 dir = hit.point - originPosition;
+                dir.y = 0;
+                return dir.normalized;
             }
+            return Vector3.forward;
+        }
+        
+        private void OnSubmit(InputAction.CallbackContext ctx) => SubmitPressedEvent?.Invoke();
+
+        private void OnCancel(InputAction.CallbackContext ctx) => CancelPressedEvent?.Invoke();
+
+        private bool Consume(ref bool flag)
+        {
+            bool temp = flag;
+            flag = false;
+            return temp;
         }
     }
 }
