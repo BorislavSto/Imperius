@@ -493,9 +493,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 700394403}
-  - component: {fileID: 700394404}
   m_Layer: 0
-  m_Name: UIManager
+  m_Name: GameHUDSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,19 +515,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &700394404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 700394402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77d643df44c7408459ce7750daf5f4ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI.UIManager
-  mainMenuView: {fileID: 702245675}
 --- !u!1 &702245673
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI.MainMenuView
   startButton: {fileID: 1386824858}
   optionsButton: {fileID: 1365364410}
+  quitButton: {fileID: 0}
 --- !u!1 &1009423347
 GameObject:
   m_ObjectHideFlags: 0
