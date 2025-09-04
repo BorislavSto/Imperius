@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2112980706058627182}
   - component: {fileID: 8987785984704777571}
   - component: {fileID: 6651565445750602743}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1563842209486647139}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 2334562189189162659}
   - component: {fileID: 9191380505256572842}
   - component: {fileID: 832430069188154832}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CharcterMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,9 +224,9 @@ GameObject:
   - component: {fileID: 4069158795608282789}
   - component: {fileID: 6129484873708992869}
   - component: {fileID: 1584027298828759563}
-  m_Layer: 0
-  m_Name: Character
-  m_TagString: Untagged
+  m_Layer: 3
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -351,7 +351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4412221257135077032}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MeshRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

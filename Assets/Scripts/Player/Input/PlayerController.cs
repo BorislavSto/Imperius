@@ -30,6 +30,11 @@ namespace Player
       
         private void Update()
         {
+            /// used just for TEMP for testing
+              if (inputHandler is null)
+                inputHandler = InputManager.Instance.InputHandler;
+            ///
+            
             moveInputVector = new Vector3(inputHandler.MoveHorizontal, 0f, inputHandler.MoveVertical);
 
             Vector3 camForward = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up).normalized;
