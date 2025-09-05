@@ -1,7 +1,18 @@
 using System;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public struct HitInfo
+{
+    public GameObject Source;
+    public float DamageAmount;
+}
+
+public interface IDamageable
+{
+    public void TakeDamage(HitInfo hitInfo);
+}
+
+public class Health : MonoBehaviour, IDamageable
 {
     public float MaxHealth { get; private set; }
     private float CurrentHealth { get; set; }
@@ -15,9 +26,9 @@ public class Health : MonoBehaviour
         CurrentHealth = maxHealth;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(HitInfo hitInfo)
     {
-        CurrentHealth -= amount;
+        CurrentHealth -= hitInfo.DamageAmount;
         OnDamaged?.Invoke(CurrentHealth);
 
         if (CurrentHealth <= 0)

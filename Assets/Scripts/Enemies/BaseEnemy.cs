@@ -5,6 +5,8 @@ public class BaseEnemy : MonoBehaviour
 {
     [SerializeField] private BehaviorGraphAgent enemyGraph;
     [SerializeField] private BaseEnemyData enemyData;
+
+    private Health enemyHealth;
     
     void Start()
     {
@@ -13,7 +15,14 @@ public class BaseEnemy : MonoBehaviour
 
     private void SetUpEnemy()
     {
-        enemyGraph.BlackboardReference.SetVariableValue("WalkingSpeed", enemyData.GetWalkingSpeed());
-        enemyGraph.BlackboardReference.SetVariableValue("RunningSpeed", enemyData.GetRunningSpeed());
+        enemyGraph.BlackboardReference.SetVariableValue("WalkingSpeed", enemyData.WalkingSpeed);
+        enemyGraph.BlackboardReference.SetVariableValue("RunningSpeed", enemyData.RunningSpeed);
+        
+        // this sets up all the components so the components can be used by anything else not just enemies
+
+        enemyHealth = GetComponent<Health>(); 
+        enemyHealth.Init(enemyData.Health);
+        
+        // 
     }
 }
