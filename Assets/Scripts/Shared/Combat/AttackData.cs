@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class AttackAsset : ScriptableObject
+public abstract class AttackData : ScriptableObject
 {
     [Header("Common Attack Data")]
     public string animationTrigger = "Attack";
@@ -10,6 +10,4 @@ public abstract class AttackAsset : ScriptableObject
     public float damage = 10f;
     public LayerMask hitMask;
     public AudioClip sfx;
-
-    public abstract IAttackBehavior CreateBehavior(Attack executor);
 }

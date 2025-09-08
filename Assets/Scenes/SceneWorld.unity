@@ -932,6 +932,14 @@ PrefabInstance:
       propertyPath: 'managedReferences[6713221177934873044].m_Value.Array.data[2]'
       value: 
       objectReference: {fileID: 1981295597}
+    - target: {fileID: 8428899727916416895, guid: ef89f20100122c646be23b1d75e03300, type: 3}
+      propertyPath: attackDatas.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428899727916416895, guid: ef89f20100122c646be23b1d75e03300, type: 3}
+      propertyPath: 'attackDatas.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 755b6d8332629d64285f2ea378e8aaa4, type: 2}
     - target: {fileID: 8693306255102487165, guid: ef89f20100122c646be23b1d75e03300, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.50829315
