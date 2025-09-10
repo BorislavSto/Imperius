@@ -5,32 +5,30 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "Enemy Attacks Player", story: "[Agent] Attacks [Target] [Animator]", category: "Action", id: "7bbdd14cc1f9702b68f98db1bedd5459")]
+[NodeDescription(name: "Enemy Attacks Player", story: "[Agent] will [Attack] [Target] ,animating with [EnemyAnimator]", category: "Action", id: "7bbdd14cc1f9702b68f98db1bedd5459")]
 public partial class EnemyAttacksPlayerAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Agent;
     [SerializeReference] public BlackboardVariable<GameObject> Target;
-    [SerializeReference] public BlackboardVariable<Animator> Animator;
+    [SerializeReference] public BlackboardVariable<Attack> Attack;
+    [SerializeReference] public BlackboardVariable<Animator> EnemyAnimator;
     private bool attackFinished;
 
     protected override Status OnStart()
     {
-        if (Agent.Value == null || Target.Value == null)
-            return Status.Failure;
-
-        var attack = Agent.Value.GetComponent<Attack>();
-        if (attack == null)
+        if (Agent.Value is null || Target.Value is null || Attack.Value is null)
             return Status.Failure;
 
         var ctx = new AttackContext
         {
-            Animator = Animator.Value,
+            Animator = EnemyAnimator.Value,
             Audio = Agent.Value.GetComponent<AudioSource>(),
-            Attacker = Agent.Value.transform,
-            Target = Target.Value
+            Attacker = Agent.Value,
+            Target = Target.Value,
+            SetCooldown = (attackName, cooldownTime) => SetCooldownTime(cooldownTime),
         };
-
-        Agent.Value.GetComponent<Attack>().StartCoroutine(attack.ExecuteAttack(ctx, () => attackFinished = true));
+        
+        Attack.Value.StartCoroutine(Attack.Value.ExecuteAttack(ctx, () => attackFinished = true));
 
         return Status.Running;
     }
@@ -42,6 +40,12 @@ public partial class EnemyAttacksPlayerAction : Action
 
     protected override void OnEnd()
     {
+    }
+
+    private void SetCooldownTime(float cooldownTime)
+    {
+        BehaviorGraphAgent graphAgent = Agent.Value.GetComponent<BehaviorGraphAgent>();
+        graphAgent.BlackboardReference.SetVariableValue("AttackCooldown", cooldownTime);
     }
 }
 

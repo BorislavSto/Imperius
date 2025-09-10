@@ -8,8 +8,10 @@ public class Attack : MonoBehaviour
 
     public virtual IEnumerator ExecuteAttack(AttackContext ctx, System.Action onFinished = null)
     {
-        if (attackDatas == null || attackDatas.Length == 0) yield break;
+        if (attackDatas is null || attackDatas.Length is 0) yield break;
 
         CurrentData = attackDatas[Random.Range(0, attackDatas.Length)];
+        
+        ctx.SetCooldown?.Invoke(CurrentData.name, CurrentData.cooldown);
     }
 }

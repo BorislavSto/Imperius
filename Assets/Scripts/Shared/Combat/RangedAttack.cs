@@ -14,22 +14,39 @@ public class RangedAttack : Attack
         
         RangedAttackData data = CurrentData as RangedAttackData;
         
-        if (data == null) throw new ArgumentNullException(nameof(data));
+        if (data is null) throw new ArgumentNullException(nameof(data));
         
         yield return new WaitForSeconds(data.windup);
 
-        if (data.projectilePrefab != null && ctx.Target != null)
+        if (data.projectilePrefab is not null && ctx.Target is not null)
         {
-            GameObject proj = Instantiate(data.projectilePrefab, shootOrigin.position, Quaternion.identity);
+            Vector3 baseDir = (ctx.Target.transform.position - shootOrigin.position).normalized;
 
-            Vector3 dir = (ctx.Target.transform.position - shootOrigin.position).normalized;
-            Rigidbody rb = proj.GetComponent<Rigidbody>();
-            if (rb != null)
+            for (int i = 0; i < data.projectileCount; i++)
             {
-                rb.linearVelocity = dir * data.projectileSpeed;
-            }
+                Vector3 shootDir = baseDir;
 
-            Destroy(proj, data.projectileLifetime);
+                if (data.projectileCount > 1)
+                {
+                    float angle = data.spreadAngle * ((float)i / (data.projectileCount - 1) - 0.5f);
+                    shootDir = Quaternion.AngleAxis(angle, Vector3.up) * baseDir;
+                }
+
+                GameObject proj = Instantiate(data.projectilePrefab, shootOrigin.position, 
+                    Quaternion.LookRotation(shootDir));
+
+                DamageRelay damageRelay = proj.GetComponent<DamageRelay>();
+                damageRelay?.EnableDamage(data, ctx.Attacker.gameObject);
+
+                Rigidbody rb = proj.GetComponent<Rigidbody>();
+                if (rb is not null)
+                {
+                    rb.useGravity = false;
+                    rb.linearVelocity = shootDir * data.projectileSpeed;
+                }
+
+                Destroy(proj, data.projectileLifetime);
+            }
         }
 
         yield return new WaitForSeconds(data.recovery);

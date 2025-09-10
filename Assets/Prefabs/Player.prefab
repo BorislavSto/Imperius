@@ -2497,7 +2497,9 @@ GameObject:
   - component: {fileID: 4069158795608282789}
   - component: {fileID: 6129484873708992869}
   - component: {fileID: 1584027298828759563}
+  - component: {fileID: 3256550721447598065}
   - component: {fileID: 6149332245841157956}
+  - component: {fileID: 2523480752898544971}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -2616,6 +2618,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5457d57535b8461d94a4dc99d186733d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerInputHandler
+--- !u!114 &3256550721447598065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8102031018512780498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3621efb4b18905e49881a334d352e539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!54 &6149332245841157956
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2643,6 +2657,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2523480752898544971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8102031018512780498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c3d26dcf7f474684a80b3738e04429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCharacter
 --- !u!1 &8289948076599610088
 GameObject:
   m_ObjectHideFlags: 0

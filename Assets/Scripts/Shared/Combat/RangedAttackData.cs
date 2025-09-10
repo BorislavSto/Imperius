@@ -7,4 +7,8 @@ public class RangedAttackData : AttackData
     public GameObject projectilePrefab;
     public float projectileSpeed = 15f;
     public float projectileLifetime = 5f;
+    
+    [Header("Multi-Shot")]
+    public int projectileCount = 1;
+    public float spreadAngle = 0f;
 }

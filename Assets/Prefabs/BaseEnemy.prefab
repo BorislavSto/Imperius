@@ -2705,6 +2705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8587317908912184750}
   - component: {fileID: 7875801393036686029}
+  - component: {fileID: 3211975652644506154}
   m_Layer: 0
   m_Name: MeleDamageCollider
   m_TagString: Untagged
@@ -2748,6 +2749,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3211975652644506154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5286328735080019241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7e3f0586174771a233323e9f88e943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageRelay
+  damageArea: {fileID: 7875801393036686029}
 --- !u!1 &6563483743353659518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2764,7 +2778,6 @@ GameObject:
   - component: {fileID: 7233237054429466281}
   - component: {fileID: 4951961599083799106}
   - component: {fileID: 4598081398298821763}
-  - component: {fileID: 8428899727916416895}
   - component: {fileID: 3141130663381394205}
   m_Layer: 0
   m_Name: BaseEnemy
@@ -2869,6 +2882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
   enemyGraph: {fileID: 7233237054429466281}
   enemyData: {fileID: 11400000, guid: f168ddfbafe010443b1769de9d49e11a, type: 2}
+  AttackType: {fileID: 0}
 --- !u!114 &7233237054429466281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2887,6 +2901,7 @@ MonoBehaviour:
   - rid: 6713221177934873044
   - rid: 6713221178447364931
   - rid: 6713221197804077656
+  - rid: 6713221266082628122
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -2927,6 +2942,14 @@ MonoBehaviour:
           m_Value1: 9767086243096867714
         Name: EnemyAnimator
         m_Value: {fileID: 3392406191895918832}
+    - rid: 6713221266082628122
+      type: {class: 'BlackboardVariable`1[[Attack, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1679056963337276955
+          m_Value1: 10090033692633051451
+        Name: AttackType
+        m_Value: {fileID: 0}
 --- !u!114 &4951961599083799106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2954,21 +2977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3621efb4b18905e49881a334d352e539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
---- !u!114 &8428899727916416895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6563483743353659518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3430c5c1852b4df7aed0028e5690659b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
-  attackAssets:
-  - {fileID: 11400000, guid: 755b6d8332629d64285f2ea378e8aaa4, type: 2}
-  damageArea: {fileID: 7875801393036686029}
 --- !u!82 &3141130663381394205
 AudioSource:
   m_ObjectHideFlags: 0

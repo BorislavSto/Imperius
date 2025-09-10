@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d689324fc254f29b77d1981f08d4c45, type: 3}
-  m_Name: TestMeleeAttack
-  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttackAsset
-  animationTrigger: Attack
-  cooldown: 1
+  m_Script: {fileID: 11500000, guid: b6e9cf9d362b4262bc474a54569ed1da, type: 3}
+  m_Name: TestRangedAttack
+  m_EditorClassIdentifier: Assembly-CSharp::RangedAttackData
+  animationTrigger: Shoot
+  cooldown: 5
   windup: 0.2
   recovery: 0.4
   damage: 10
@@ -21,4 +21,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   sfx: {fileID: 8300000, guid: 9c5af593e0716cd43a64231bcf26b0e5, type: 3}
-  hitboxActiveTime: 1
+  projectilePrefab: {fileID: 7061311882892290001, guid: 96992378ea1f1744b9b15bebd8fe85e3, type: 3}
+  projectileSpeed: 15
+  projectileLifetime: 5
+  projectileCount: 1
+  spreadAngle: 0

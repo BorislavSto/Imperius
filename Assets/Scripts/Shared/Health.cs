@@ -4,7 +4,7 @@ using UnityEngine;
 public struct HitInfo
 {
     public GameObject Source;
-    public float DamageAmount;
+    public int DamageAmount;
 }
 
 public interface IDamageable
@@ -14,13 +14,13 @@ public interface IDamageable
 
 public class Health : MonoBehaviour, IDamageable
 {
-    public float MaxHealth { get; private set; }
-    private float CurrentHealth { get; set; }
+    public int MaxHealth { get; private set; }
+    private int CurrentHealth { get; set; }
 
     public event Action<float> OnDamaged;
     public event Action OnDeath;
 
-    public void Init(float maxHealth)
+    public void Init(int maxHealth)
     {
         MaxHealth = maxHealth;
         CurrentHealth = maxHealth;
