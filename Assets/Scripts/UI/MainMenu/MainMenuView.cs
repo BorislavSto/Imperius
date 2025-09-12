@@ -6,21 +6,30 @@ namespace UI
     public class MainMenuView : View
     {
         [SerializeField] private Button startButton;
-        [SerializeField] private Button optionsButton;
+        [SerializeField] private Button settingsButton;
         [SerializeField] private Button quitButton;
-        //[SerializeField] private 
+        [SerializeField] private GameObject settingsTab;
 
         private MainMenuViewModel viewModel;
 
         public override void Init(ViewModel vm)
         {
+            base.Init(vm);
+            
             viewModel = vm as MainMenuViewModel;
 
-            optionsButton.onClick.AddListener(() => viewModel.OnOptionsClicked());
-            startButton.onClick.AddListener(() => viewModel.OnStartClicked());
-            quitButton.onClick.AddListener(() => viewModel.OnQuitClicked());
+            startButton.onClick.AddListener(() => viewModel.OnStartTriggered());
+            settingsButton.onClick.AddListener(() => viewModel.OnSettingsTriggered());
+            quitButton.onClick.AddListener(() => viewModel.OnQuitTriggered());
+            
+            Show();
         }
-
+        
+        public void SetSettingsVisible(bool visible)
+        {
+            settingsTab.SetActive(visible);
+        }
+        
         public override void Show()
         {
             base.Show();

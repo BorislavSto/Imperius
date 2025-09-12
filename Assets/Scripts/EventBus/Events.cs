@@ -1,4 +1,4 @@
-﻿namespace EventBus
+namespace EventBus
 {
     public interface IEvent
     {
@@ -14,3 +14,5 @@
         public int mana;
     }
 }
+
+public struct EscapeButtonPressed : IEvent { }

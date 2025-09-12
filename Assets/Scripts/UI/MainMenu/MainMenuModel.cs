@@ -4,9 +4,5 @@ namespace UI
     {
         public string SelectedOption { get; set; } = "StartGame";
 
-        void MainMenuViewModel()
-        {
-            
-        }
     }
 }
