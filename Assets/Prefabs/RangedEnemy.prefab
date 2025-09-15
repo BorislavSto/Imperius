@@ -312,9 +312,30 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: managedReferences[6713221266082628122].m_Value
+      propertyPath: 'managedReferences[6713221358502543675]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[AttackHandler,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
+      propertyPath: managedReferences[6713221358502543675].Name
+      value: AttackHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
+      propertyPath: managedReferences[6713221358502543675].m_Value
       value: 
-      objectReference: {fileID: 98844508304444782}
+      objectReference: {fileID: 884863558328591399}
+    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[4]'
+      value: 6713221358502543675
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
+      propertyPath: managedReferences[6713221358502543675].GUID.m_Value0
+      value: 15936704132963526454
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
+      propertyPath: managedReferences[6713221358502543675].GUID.m_Value1
+      value: 4413335983721307174
+      objectReference: {fileID: 0}
     - target: {fileID: 7716734066250774752, guid: ef89f20100122c646be23b1d75e03300, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -367,8 +388,8 @@ PrefabInstance:
       addedObject: {fileID: 8306298673729594561}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6563483743353659518, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      insertIndex: 8
-      addedObject: {fileID: 98844508304444782}
+      insertIndex: -1
+      addedObject: {fileID: 884863558328591399}
   m_SourcePrefab: {fileID: 100100000, guid: ef89f20100122c646be23b1d75e03300, type: 3}
 --- !u!4 &750287991611821426 stripped
 Transform:
@@ -380,7 +401,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6563483743353659518, guid: ef89f20100122c646be23b1d75e03300, type: 3}
   m_PrefabInstance: {fileID: 8272370408889722639}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &98844508304444782
+--- !u!114 &884863558328591399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,9 +410,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3016128338075207537}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0daf0d3ab59404ba8520145b4cbde0c, type: 3}
+  m_Script: {fileID: 11500000, guid: f2d88b8eb07f4a76bf36eddc1e4f46eb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RangedAttack
+  m_EditorClassIdentifier: Assembly-CSharp::AttackHandler
   attackDatas:
   - {fileID: 11400000, guid: bc257ce986bf7b54fbc315be28dbfa88, type: 2}
+  attackerType: 1
+  damageArea: {fileID: 0}
+  dmgRelay: {fileID: 0}
   shootOrigin: {fileID: 8306298673729594561}

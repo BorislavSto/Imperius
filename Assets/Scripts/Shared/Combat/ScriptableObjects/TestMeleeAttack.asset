@@ -19,6 +19,6 @@ MonoBehaviour:
   damage: 10
   hitMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   sfx: {fileID: 8300000, guid: 9c5af593e0716cd43a64231bcf26b0e5, type: 3}
   hitboxActiveTime: 1

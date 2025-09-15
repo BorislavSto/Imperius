@@ -1,17 +1,13 @@
 using System.Collections;
-using UnityEngine;
 
-public class Attack : MonoBehaviour
+public abstract class Attack
 {
-    [SerializeField] protected AttackData[] attackDatas;
-    protected AttackData CurrentData;
+    protected AttackData data;
 
-    public virtual IEnumerator ExecuteAttack(AttackContext ctx, System.Action onFinished = null)
+    protected Attack(AttackData data)
     {
-        if (attackDatas is null || attackDatas.Length is 0) yield break;
-
-        CurrentData = attackDatas[Random.Range(0, attackDatas.Length)];
-        
-        ctx.SetCooldown?.Invoke(CurrentData.name, CurrentData.cooldown);
+        this.data = data;
     }
+
+    public abstract IEnumerator ExecuteAttack(AttackContext ctx, System.Action onFinished = null);
 }

@@ -10,7 +10,7 @@ public partial class EnemyAttacksPlayerAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Agent;
     [SerializeReference] public BlackboardVariable<GameObject> Target;
-    [SerializeReference] public BlackboardVariable<Attack> Attack;
+    [SerializeReference] public BlackboardVariable<AttackHandler> Attack;
     [SerializeReference] public BlackboardVariable<Animator> EnemyAnimator;
     private bool attackFinished;
 
@@ -24,11 +24,11 @@ public partial class EnemyAttacksPlayerAction : Action
             Animator = EnemyAnimator.Value,
             Audio = Agent.Value.GetComponent<AudioSource>(),
             Attacker = Agent.Value,
-            Target = Target.Value,
+            Target = Target.Value.transform,
             SetCooldown = (attackName, cooldownTime) => SetCooldownTime(cooldownTime),
         };
         
-        Attack.Value.StartCoroutine(Attack.Value.ExecuteAttack(ctx, () => attackFinished = true));
+        Attack.Value.Attack(ctx, () => attackFinished = true); //StartCoroutine(Attack.Value.ExecuteAttack(ctx, () => attackFinished = true));
 
         return Status.Running;
     }

@@ -10,4 +10,6 @@ public abstract class AttackData : ScriptableObject
     public int damage = 10;
     public LayerMask hitMask;
     public AudioClip sfx;
+    
+    public abstract Attack CreateAttack(AttackHandler attackHandler);
 }

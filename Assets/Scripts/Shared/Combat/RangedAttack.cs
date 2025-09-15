@@ -5,51 +5,54 @@ using UnityEngine;
 public class RangedAttack : Attack
 {
     [SerializeField] private Transform shootOrigin;
+    protected RangedAttackData currentData;
+
+    public RangedAttack(AttackData data, Transform shootOrigin) : base(data)
+    {
+        this.shootOrigin = shootOrigin;
+        currentData = data as RangedAttackData;
+    }
 
     public override IEnumerator ExecuteAttack(AttackContext ctx, Action onFinished = null)
     {
-        yield return base.ExecuteAttack(ctx, onFinished);
-        
         ctx.FaceTarget();
         
-        RangedAttackData data = CurrentData as RangedAttackData;
+        if (currentData is null) throw new ArgumentNullException(nameof(currentData));
         
-        if (data is null) throw new ArgumentNullException(nameof(data));
-        
-        yield return new WaitForSeconds(data.windup);
+        yield return new WaitForSeconds(currentData.windup);
 
-        if (data.projectilePrefab is not null && ctx.Target is not null)
+        if (currentData.projectilePrefab is not null && ctx.Target is not null)
         {
-            Vector3 baseDir = (ctx.Target.transform.position - shootOrigin.position).normalized;
+            Vector3 baseDir = (ctx.Target.position - shootOrigin.position).normalized;
 
-            for (int i = 0; i < data.projectileCount; i++)
+            for (int i = 0; i < currentData.projectileCount; i++)
             {
                 Vector3 shootDir = baseDir;
 
-                if (data.projectileCount > 1)
+                if (currentData.projectileCount > 1)
                 {
-                    float angle = data.spreadAngle * ((float)i / (data.projectileCount - 1) - 0.5f);
+                    float angle = currentData.spreadAngle * ((float)i / (currentData.projectileCount - 1) - 0.5f);
                     shootDir = Quaternion.AngleAxis(angle, Vector3.up) * baseDir;
                 }
 
-                GameObject proj = Instantiate(data.projectilePrefab, shootOrigin.position, 
+                GameObject proj = UnityEngine.Object.Instantiate(currentData.projectilePrefab, shootOrigin.position, 
                     Quaternion.LookRotation(shootDir));
 
                 DamageRelay damageRelay = proj.GetComponent<DamageRelay>();
-                damageRelay?.EnableDamage(data, ctx.Attacker.gameObject);
+                damageRelay?.EnableDamage(currentData, ctx.Attacker.gameObject);
 
                 Rigidbody rb = proj.GetComponent<Rigidbody>();
                 if (rb is not null)
                 {
                     rb.useGravity = false;
-                    rb.linearVelocity = shootDir * data.projectileSpeed;
+                    rb.linearVelocity = shootDir * currentData.projectileSpeed;
                 }
 
-                Destroy(proj, data.projectileLifetime);
+                UnityEngine.Object.Destroy(proj, currentData.projectileLifetime);
             }
         }
 
-        yield return new WaitForSeconds(data.recovery);
+        yield return new WaitForSeconds(currentData.recovery);
 
         onFinished?.Invoke();
     }

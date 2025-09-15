@@ -325,15 +325,20 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6563483743353659518, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      insertIndex: 8
-      addedObject: {fileID: 1299198516656508094}
+      insertIndex: -1
+      addedObject: {fileID: 4088866696164903202}
   m_SourcePrefab: {fileID: 100100000, guid: ef89f20100122c646be23b1d75e03300, type: 3}
+--- !u!65 &1882457218287085484 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 7875801393036686029, guid: ef89f20100122c646be23b1d75e03300, type: 3}
+  m_PrefabInstance: {fileID: 8598395876914058593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3190112930670589215 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6563483743353659518, guid: ef89f20100122c646be23b1d75e03300, type: 3}
   m_PrefabInstance: {fileID: 8598395876914058593}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1299198516656508094
+--- !u!114 &4088866696164903202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,9 +347,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3190112930670589215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3430c5c1852b4df7aed0028e5690659b, type: 3}
+  m_Script: {fileID: 11500000, guid: f2d88b8eb07f4a76bf36eddc1e4f46eb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
-  attackDatas: []
-  damager: {fileID: 0}
-  damageArea: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::AttackHandler
+  attackDatas:
+  - {fileID: 11400000, guid: 755b6d8332629d64285f2ea378e8aaa4, type: 2}
+  attackerType: 0
+  damageArea: {fileID: 1882457218287085484}
+  dmgRelay: {fileID: 6611453203885137739}
+  shootOrigin: {fileID: 0}
+--- !u!114 &6611453203885137739 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3211975652644506154, guid: ef89f20100122c646be23b1d75e03300, type: 3}
+  m_PrefabInstance: {fileID: 8598395876914058593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7e3f0586174771a233323e9f88e943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageRelay

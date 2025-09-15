@@ -11,4 +11,15 @@ public class RangedAttackData : AttackData
     [Header("Multi-Shot")]
     public int projectileCount = 1;
     public float spreadAngle = 0f;
+    
+    public override Attack CreateAttack(AttackHandler attackHandler)
+    {
+        if (!attackHandler.ShootOrigin)
+        {
+            Debug.LogError("RangedAttackData requires ShootOrigin on the AttackHandler!");
+            return null;
+        }
+        
+        return new RangedAttack(this, attackHandler.ShootOrigin);
+    }
 }
