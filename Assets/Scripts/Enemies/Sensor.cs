@@ -15,7 +15,7 @@ public class Sensor : MonoBehaviour
     {
         sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.isTrigger = true;
-        sphereCollider.radius = detectionRadius;
+        SetSensorRadius(detectionRadius);
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius);
         foreach (var c in colliders)
@@ -32,6 +32,11 @@ public class Sensor : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         ProcessTrigger(other, transform => detectedObjects.Remove(transform));
+    }
+
+    public void SetSensorRadius(float newRadius)
+    {
+        sphereCollider.radius = newRadius;
     }
 
     void ProcessTrigger(Collider other, Action<Transform> action)

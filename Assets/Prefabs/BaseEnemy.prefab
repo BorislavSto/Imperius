@@ -2762,6 +2762,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageRelay
   damageArea: {fileID: 7875801393036686029}
+  terrainLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &6563483743353659518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,7 +2885,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
   enemyGraph: {fileID: 7233237054429466281}
   enemyData: {fileID: 11400000, guid: f168ddfbafe010443b1769de9d49e11a, type: 2}
-  AttackType: {fileID: 0}
 --- !u!114 &7233237054429466281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2901,7 +2903,7 @@ MonoBehaviour:
   - rid: 6713221177934873044
   - rid: 6713221178447364931
   - rid: 6713221197804077656
-  - rid: 6713221266082628122
+  - rid: 6713221426756976947
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -2942,14 +2944,14 @@ MonoBehaviour:
           m_Value1: 9767086243096867714
         Name: EnemyAnimator
         m_Value: {fileID: 3392406191895918832}
-    - rid: 6713221266082628122
-      type: {class: 'BlackboardVariable`1[[Attack, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+    - rid: 6713221426756976947
+      type: {class: 'BlackboardVariable`1[[Sensor, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
-          m_Value0: 1679056963337276955
-          m_Value1: 10090033692633051451
-        Name: AttackType
-        m_Value: {fileID: 0}
+          m_Value0: 8105294378719231581
+          m_Value1: 14027565893273538208
+        Name: Sensor
+        m_Value: {fileID: 4951961599083799106}
 --- !u!114 &4951961599083799106
 MonoBehaviour:
   m_ObjectHideFlags: 0

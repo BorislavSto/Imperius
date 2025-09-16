@@ -16,5 +16,5 @@ MonoBehaviour:
   health: 30
   walkingSpeed: 2
   runningSpeed: 4
-  visionRange: 5
+  visionRange: 10
   minAttackRange: 5

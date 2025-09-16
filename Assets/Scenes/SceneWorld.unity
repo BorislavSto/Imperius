@@ -251,6 +251,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &564782763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4088866696164903202, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
+  m_PrefabInstance: {fileID: 858035387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d88b8eb07f4a76bf36eddc1e4f46eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackHandler
 --- !u!1001 &574058202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -516,6 +527,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1383235902428634056, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
+      propertyPath: 'managedReferences[6713221426756976952]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[AttackHandler,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383235902428634056, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
+      propertyPath: managedReferences[6713221426756976952].Name
+      value: AttackHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383235902428634056, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
+      propertyPath: m_BlackboardVariableOverridesList.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383235902428634056, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
+      propertyPath: managedReferences[6713221426756976952].m_Value
+      value: 
+      objectReference: {fileID: 564782763}
+    - target: {fileID: 1383235902428634056, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[5]'
+      value: 6713221426756976952
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383235902428634056, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
+      propertyPath: managedReferences[6713221426756976952].GUID.m_Value0
+      value: 15936704132963526454
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383235902428634056, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
+      propertyPath: managedReferences[6713221426756976952].GUID.m_Value1
+      value: 4413335983721307174
+      objectReference: {fileID: 0}
     - target: {fileID: 3190112930670589215, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
@@ -556,37 +596,6 @@ Transform:
   m_Children:
   - {fileID: 686117103}
   - {fileID: 1945123214}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &973680878
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 973680879}
-  m_Layer: 0
-  m_Name: GameObject (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &973680879
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 973680878}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.09411, y: 0.86, z: 10.48}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1429655925
@@ -641,42 +650,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangedEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3016128338075207537, guid: a012ce33435213f42967fe6339cd7cf2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a012ce33435213f42967fe6339cd7cf2, type: 3}
---- !u!1 &1431523605
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1431523606}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1431523606
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431523605}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.09411, y: 0.86, z: 5.49369}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1485136482
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,37 +880,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 8ed81e3586b07cc4cb91678af61e10fc, type: 2}
   m_BuildHeightMesh: 0
---- !u!1 &1981295597
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1981295598}
-  m_Layer: 0
-  m_Name: GameObject (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1981295598
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1981295597}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.67, y: 0.86, z: 7.69}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1999096101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,10 +1045,7 @@ SceneRoots:
   - {fileID: 892616586}
   - {fileID: 1485136483}
   - {fileID: 1999096102}
-  - {fileID: 1696710646}
-  - {fileID: 1431523606}
-  - {fileID: 973680879}
-  - {fileID: 1981295598}
   - {fileID: 574058202}
   - {fileID: 1429655925}
   - {fileID: 858035387}
+  - {fileID: 1696710646}
