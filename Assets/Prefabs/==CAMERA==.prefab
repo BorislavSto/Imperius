@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3731344537950159985}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.35099936, y: -0.19500977, z: 0.07498973, w: 0.912769}
-  m_LocalPosition: {x: 0, y: 5.74, z: -6.01}
+  m_LocalRotation: {x: 0.32157454, y: 0.09905586, z: -0.03384817, w: 0.9410803}
+  m_LocalPosition: {x: -1.6019208, y: 5.9532084, z: -5.525218}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineSplineDolly
   m_SplineSettings:
     Spline: {fileID: 2778765528491725032}
-    Position: 0
+    Position: 0.26341784
     Units: 2
   SplineOffset: {x: 0, y: 0, z: 0}
   CameraRotation: 0
@@ -206,42 +206,62 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
+        x: -3.97
+        y: -0.19999981
+        z: 0.6700001
+      TangentIn:
+        x: 0
+        y: 0
+        z: -3.6199617
+      TangentOut:
+        x: 0
+        y: 0
+        z: 3.6199617
+      Rotation:
+        value:
+          x: -0.04952652
+          y: 0.73228586
+          z: 0.072243996
+          w: 0.6753409
+    - Position:
+        x: 5.06
+        y: 1.1300001
+        z: 0.07000017
+      TangentIn:
+        x: 0
+        y: 0
+        z: -2.739272
+      TangentOut:
+        x: 0
+        y: 0
+        z: 2.739272
+      Rotation:
+        value:
+          x: -0.05452734
+          y: 0.71825355
+          z: 0.003674155
+          w: 0.69363177
+    - Position:
+        x: 12.4
+        y: 1.1300001
+        z: 0.05000019
+      TangentIn:
+        x: 0
+        y: 0
+        z: -0
+      TangentOut:
         x: 0
         y: 0
         z: 0
-      TangentIn:
-        x: 0
-        y: 0
-        z: -2.925117
-      TangentOut:
-        x: 0
-        y: 0
-        z: 2.925117
       Rotation:
         value:
-          x: -0.009884438
-          y: 0.86162627
-          z: 0.027255293
-          w: 0.5067145
-    - Position:
-        x: 1
-        y: 1
-        z: 1
-      TangentIn:
-        x: 0
-        y: 0
-        z: -2.3742213
-      TangentOut:
-        x: 0
-        y: 0
-        z: 2.3742213
-      Rotation:
-        value:
-          x: -0.011396067
-          y: 0.79753065
-          z: 0.010306673
-          w: 0.6030827
+          x: -0.057666518
+          y: -1.1672782e-10
+          z: 0.044965692
+          w: 0.9973227
     m_MetaData:
+    - Mode: 2
+      Tension: 0.5
     - Mode: 2
       Tension: 0.5
     - Mode: 2
@@ -298,8 +318,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002541321291776083}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3252699, y: -0.10547908, z: 0.03653762, w: 0.9390094}
-  m_LocalPosition: {x: 0.4190093, y: 6.686231, z: -4.837229}
+  m_LocalRotation: {x: 0.32157454, y: 0.09905585, z: -0.03384816, w: 0.9410803}
+  m_LocalPosition: {x: -1.6019208, y: 5.9532084, z: -5.525218}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
