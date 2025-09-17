@@ -25,10 +25,9 @@ public partial class EnemyAttacksPlayerAction : Action
             Audio = Agent.Value.GetComponent<AudioSource>(),
             Attacker = Agent.Value,
             Target = Target.Value.transform,
-            SetCooldown = (attackName, cooldownTime) => SetCooldownTime(cooldownTime),
         };
         
-        Attack.Value.Attack(ctx, () => attackFinished = true); //StartCoroutine(Attack.Value.ExecuteAttack(ctx, () => attackFinished = true));
+        Attack.Value.Attack(ctx, () => attackFinished = true);
 
         return Status.Running;
     }
@@ -36,16 +35,6 @@ public partial class EnemyAttacksPlayerAction : Action
     protected override Status OnUpdate()
     {
         return attackFinished ? Status.Success : Status.Running;
-    }
-
-    protected override void OnEnd()
-    {
-    }
-
-    private void SetCooldownTime(float cooldownTime)
-    {
-        BehaviorGraphAgent graphAgent = Agent.Value.GetComponent<BehaviorGraphAgent>();
-        graphAgent.BlackboardReference.SetVariableValue("AttackCooldown", cooldownTime);
     }
 }
 

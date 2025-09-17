@@ -1,7 +1,7 @@
 using KinematicCharacterController;
 using UnityEngine;
 
-namespace Player
+namespace Player.Input
 {
     [RequireComponent(typeof(KinematicCharacterMotor))]
     public class PlayerController : MonoBehaviour, ICharacterController

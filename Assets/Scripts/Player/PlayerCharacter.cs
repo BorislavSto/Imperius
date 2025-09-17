@@ -1,4 +1,7 @@
-﻿public class PlayerCharacter : Entity 
+﻿namespace Player
 {
-    protected override int GetMaxHealth() => 30;
+    public class PlayerCharacter : Entity
+    {
+        protected override int GetMaxHealth() => 30;
+    }
 }
