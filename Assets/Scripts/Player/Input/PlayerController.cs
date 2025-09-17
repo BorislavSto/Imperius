@@ -1,5 +1,6 @@
 using KinematicCharacterController;
 using UnityEngine;
+using Core;
 
 namespace Player.Input
 {

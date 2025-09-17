@@ -1,33 +1,37 @@
 ﻿using System;
 
-public interface IEventBinding<T> {
-    public Action<T> OnEvent { get; set; }
-    public Action OnEventNoArgs { get; set; }
-}
-
-public class EventBinding<T> : IEventBinding<T> where T : IEvent
+namespace EventBus
 {
-    Action<T> onEvent = _ => { };
-    Action onEventNoArgs = () => { };
-
-    Action<T> IEventBinding<T>.OnEvent
+    public interface IEventBinding<T>
     {
-        get => onEvent;
-        set => onEvent = value;
+        public Action<T> OnEvent { get; set; }
+        public Action OnEventNoArgs { get; set; }
     }
 
-    Action IEventBinding<T>.OnEventNoArgs
+    public class EventBinding<T> : IEventBinding<T> where T : IEvent
     {
-        get => onEventNoArgs;
-        set => onEventNoArgs = value;
+        Action<T> onEvent = _ => { };
+        Action onEventNoArgs = () => { };
+
+        Action<T> IEventBinding<T>.OnEvent
+        {
+            get => onEvent;
+            set => onEvent = value;
+        }
+
+        Action IEventBinding<T>.OnEventNoArgs
+        {
+            get => onEventNoArgs;
+            set => onEventNoArgs = value;
+        }
+
+        public EventBinding(Action<T> onEvent) => this.onEvent = onEvent;
+        public EventBinding(Action onEventNoArgs) => this.onEventNoArgs = onEventNoArgs;
+
+        public void Add(Action onEvent) => onEventNoArgs += onEvent;
+        public void Remove(Action onEvent) => onEventNoArgs -= onEvent;
+
+        public void Add(Action<T> onEvent) => this.onEvent += onEvent;
+        public void Remove(Action<T> onEvent) => this.onEvent -= onEvent;
     }
-
-    public EventBinding(Action<T> onEvent) => this.onEvent = onEvent;
-    public EventBinding(Action onEventNoArgs) => this.onEventNoArgs = onEventNoArgs;
-
-    public void Add(Action onEvent) => onEventNoArgs += onEvent;
-    public void Remove(Action onEvent) => onEventNoArgs -= onEvent;
-
-    public void Add(Action<T> onEvent) => this.onEvent += onEvent;
-    public void Remove(Action<T> onEvent) => this.onEvent -= onEvent;
 }

@@ -1,4 +1,6 @@
-﻿namespace Player
+﻿using Combat;
+
+namespace Player
 {
     public class PlayerCharacter : Entity
     {

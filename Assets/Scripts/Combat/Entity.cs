@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 
-public abstract class Entity : MonoBehaviour 
+namespace Combat
 {
-    protected virtual void Start() 
+    public abstract class Entity : MonoBehaviour
     {
-        InitializeEntity();
+        protected virtual void Start()
+        {
+            InitializeEntity();
+        }
+
+        protected virtual void InitializeEntity()
+        {
+            Health health = GetComponent<Health>();
+            health?.Init(GetMaxHealth());
+        }
+
+        protected abstract int GetMaxHealth();
     }
-    
-    protected virtual void InitializeEntity() 
-    {
-        Health health = GetComponent<Health>();
-        health?.Init(GetMaxHealth());
-    }
-    
-    protected abstract int GetMaxHealth();
 }

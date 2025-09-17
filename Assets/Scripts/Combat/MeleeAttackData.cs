@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Attacks/MeleeAttack")]
-public class MeleeAttackData : AttackData
+namespace Combat
 {
-    [Header("Melee Specific")]
-    public float hitboxActiveTime = 0.2f;
-    
-    public override Attack CreateAttack(AttackHandler attackHandler)
+    [CreateAssetMenu(menuName = "Attacks/MeleeAttack")]
+    public class MeleeAttackData : AttackData
     {
-        if (!attackHandler.DmgRelay || !attackHandler.DamageArea)
+        [Header("Melee Specific")] public float hitboxActiveTime = 0.2f;
+
+        public override Attack CreateAttack(AttackHandler attackHandler)
         {
-            Debug.LogError("MeleeAttackData requires DamageRelay + DamageArea on the AttackHandler!");
-            return null;
+            if (!attackHandler.DmgRelay || !attackHandler.DamageArea)
+            {
+                Debug.LogError("MeleeAttackData requires DamageRelay + DamageArea on the AttackHandler!");
+                return null;
+            }
+
+            return new MeleeAttack(this, attackHandler.DmgRelay, attackHandler.DamageArea);
         }
-        
-        return new MeleeAttack(this, attackHandler.DmgRelay, attackHandler.DamageArea);
     }
 }

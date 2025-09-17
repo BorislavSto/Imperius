@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+namespace Core
 {
+    public class GameManager : Singleton<GameManager>
+    {
+    }
 }

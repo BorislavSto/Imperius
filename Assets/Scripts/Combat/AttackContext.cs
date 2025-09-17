@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 
-public class AttackContext
+namespace Combat
 {
-    public Animator Animator;
-    public AudioSource Audio;
-    public GameObject Attacker;
-    public Transform Target;
-
-    public void FaceTarget()
+    public class AttackContext
     {
-        if (Target is null || Attacker is null) return;
-        
-        Vector3 dir = (Target.position - Attacker.transform.position).normalized;
-        dir.y = 0;
-        
-        if (dir.sqrMagnitude > 0.001f)
-            Attacker.transform.forward = dir;
+        public Animator Animator;
+        public AudioSource Audio;
+        public GameObject Attacker;
+        public Transform Target;
+
+        public void FaceTarget()
+        {
+            if (Target is null || Attacker is null) return;
+
+            Vector3 dir = (Target.position - Attacker.transform.position).normalized;
+            dir.y = 0;
+
+            if (dir.sqrMagnitude > 0.001f)
+                Attacker.transform.forward = dir;
+        }
     }
 }

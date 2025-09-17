@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class Bootstrapper : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private string sceneName;
-    
-    private void Start()
+    public class Bootstrapper : MonoBehaviour
     {
+        [SerializeField] private string sceneName;
+
+        private void Start()
+        {
 //        LevelManager.Instance.LoadScene();
+        }
     }
 }

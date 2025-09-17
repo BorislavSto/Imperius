@@ -1,13 +1,16 @@
 using System.Collections;
 
-public abstract class Attack
+namespace Combat
 {
-    protected AttackData data;
-
-    protected Attack(AttackData data)
+    public abstract class Attack
     {
-        this.data = data;
-    }
+        protected AttackData data;
 
-    public abstract IEnumerator ExecuteAttack(AttackContext ctx, System.Action onFinished = null);
+        protected Attack(AttackData data)
+        {
+            this.data = data;
+        }
+
+        public abstract IEnumerator ExecuteAttack(AttackContext ctx, System.Action onFinished = null);
+    }
 }

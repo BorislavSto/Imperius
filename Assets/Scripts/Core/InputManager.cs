@@ -1,4 +1,6 @@
-﻿namespace Player
+﻿using Player.Input;
+
+namespace Core
 {
     public class InputManager : Singleton<InputManager>
     {

@@ -1,6 +1,9 @@
-﻿public static class GlobalData
+﻿namespace Core
 {
-    public static bool GameLoading { get; private set; }
-    
-    public static void SetGameLoading(bool value) => GameLoading = value;
+    public static class GlobalData
+    {
+        public static bool GameLoading { get; private set; }
+
+        public static void SetGameLoading(bool value) => GameLoading = value;
+    }
 }
