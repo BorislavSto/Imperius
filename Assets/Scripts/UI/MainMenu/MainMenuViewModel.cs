@@ -1,3 +1,4 @@
+using EventBus;
 using Unity.VisualScripting;
 using UnityEngine;
 

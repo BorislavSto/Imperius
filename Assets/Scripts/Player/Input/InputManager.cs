@@ -1,3 +1,5 @@
+using EventBus;
+
 namespace Player
 {
     public class InputManager : Singleton<InputManager>
