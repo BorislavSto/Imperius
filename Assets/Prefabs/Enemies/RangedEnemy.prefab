@@ -71,59 +71,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: 'managedReferences[6713221358502543675]'
-      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[AttackHandler,
-        Assembly-CSharp]]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: 'managedReferences[6713221426756976948]'
-      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[Sensor, Assembly-CSharp]]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: managedReferences[6713221358502543675].Name
-      value: AttackHandler
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: managedReferences[6713221426756976948].Name
-      value: Sensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: m_BlackboardVariableOverridesList.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: managedReferences[6713221358502543675].m_Value
-      value: 
-      objectReference: {fileID: 6337264392294515200}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: managedReferences[6713221426756976948].m_Value
-      value: 
-      objectReference: {fileID: 3924249189639308621}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[4]'
-      value: 6713221358502543675
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[5]'
-      value: 6713221426756976948
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: managedReferences[6713221358502543675].GUID.m_Value0
-      value: 15936704132963526454
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: managedReferences[6713221358502543675].GUID.m_Value1
-      value: 4413335983721307174
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: managedReferences[6713221426756976948].GUID.m_Value0
-      value: 8105294378719231581
-      objectReference: {fileID: 0}
-    - target: {fileID: 7233237054429466281, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-      propertyPath: managedReferences[6713221426756976948].GUID.m_Value1
-      value: 14027565893273538208
-      objectReference: {fileID: 0}
     - target: {fileID: 8693306255102487165, guid: ef89f20100122c646be23b1d75e03300, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.33
@@ -177,25 +124,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8693306255102487165, guid: ef89f20100122c646be23b1d75e03300, type: 3}
   m_PrefabInstance: {fileID: 8272370408889722639}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3924249189639308621 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4951961599083799106, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-  m_PrefabInstance: {fileID: 8272370408889722639}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d688b7b3a0a9bc46906186469238269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sensor
---- !u!114 &6337264392294515200 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2683900657892680975, guid: ef89f20100122c646be23b1d75e03300, type: 3}
-  m_PrefabInstance: {fileID: 8272370408889722639}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fdf11f045aa46edb593dc686d66c407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackHandler

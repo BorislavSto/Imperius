@@ -2764,7 +2764,7 @@ MonoBehaviour:
   damageArea: {fileID: 7875801393036686029}
   terrainLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!1 &6563483743353659518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,10 +2888,9 @@ MonoBehaviour:
   m_BlackboardVariableOverridesList:
   - rid: 6713221177879298130
   - rid: 6713221177934873044
-  - rid: 6713221178447364931
   - rid: 6713221197804077656
-  - rid: 6713221426756976947
-  - rid: 6713221446964609369
+  - rid: 6713221515778195813
+  - rid: 6713221515778195814
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -2912,18 +2911,7 @@ MonoBehaviour:
           m_Value0: 4537820543966479593
           m_Value1: 1446774521342644910
         Name: PatrolPoints
-        m_Value:
-        - {fileID: 0}
-        - {fileID: 0}
-        - {fileID: 0}
-    - rid: 6713221178447364931
-      type: {class: 'BlackboardVariable`1[[BaseEnemy, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 914743718746976174
-          m_Value1: 6635757382306431941
-        Name: EnemyData
-        m_Value: {fileID: 1656150966409623016}
+        m_Value: []
     - rid: 6713221197804077656
       type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -2932,22 +2920,22 @@ MonoBehaviour:
           m_Value1: 9767086243096867714
         Name: EnemyAnimator
         m_Value: {fileID: 3392406191895918832}
-    - rid: 6713221426756976947
-      type: {class: 'BlackboardVariable`1[[Sensor, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+    - rid: 6713221515778195813
+      type: {class: 'BlackboardVariable`1[[Combat.AttackHandler, Combat]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
-          m_Value0: 8105294378719231581
-          m_Value1: 14027565893273538208
-        Name: Sensor
-        m_Value: {fileID: 4951961599083799106}
-    - rid: 6713221446964609369
-      type: {class: 'BlackboardVariable`1[[AttackHandler, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 15936704132963526454
-          m_Value1: 4413335983721307174
-        Name: AttackHandler
+          m_Value0: 9517704093020327762
+          m_Value1: 15573811768523261718
+        Name: EnemyAttackHandler
         m_Value: {fileID: 2683900657892680975}
+    - rid: 6713221515778195814
+      type: {class: 'BlackboardVariable`1[[Enemies.Combat.Sensor, Enemies.Combat]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 17172471437823481780
+          m_Value1: 16275498969604528579
+        Name: EnemySensor
+        m_Value: {fileID: 4951961599083799106}
 --- !u!114 &1656150966409623016
 MonoBehaviour:
   m_ObjectHideFlags: 0
