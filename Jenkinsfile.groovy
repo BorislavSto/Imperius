@@ -16,6 +16,25 @@ pipeline{
     }
 
     stages{
+        stage('Run Tests'){
+            when{expression {TEST_PROJECT == 'true'}}
+            steps{
+                script{
+                    withEnv(["UNITY_PATH=${UNITY_INSTALLATION}"]){
+                        // Run EditMode tests
+                        bat'''
+                        "%UNITY_PATH%/Unity.exe" -batchmode -projectPath "%WORKSPACE%" -runTests -testPlatform editmode -logFile "%WORKSPACE%/test-results-editmode.log" -testResults editmodetests.xml
+                        '''
+                        
+                        // Run PlayMode tests
+                        bat'''
+                        "%UNITY_PATH%/Unity.exe" -batchmode -projectPath "%WORKSPACE%" -runTests -testPlatform playmode -logFile "%WORKSPACE%/test-results-playmode.log" -testResults playmodetests.xml
+                        '''
+                    }
+                }
+            }
+        }
+
         stage('Build Windows'){
             when{expression {BUILD_WINDOWS == 'true'}}
             steps{
@@ -30,7 +49,7 @@ pipeline{
         }
 
         stage('Deploy Windows'){
-            when{expression {BUILD_WINDOWS == 'true'}}
+            when{expression {DEPLOY_WINDOWS == 'true'}}
             steps{
                 echo 'Deploy Windows'
             }

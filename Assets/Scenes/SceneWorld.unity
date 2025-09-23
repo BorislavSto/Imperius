@@ -299,6 +299,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5311485104921602128, guid: 6d21a9dcf054f484a8abd2ccd19400f2, type: 3}
+      propertyPath: attackDatas.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8102031018512780498, guid: 6d21a9dcf054f484a8abd2ccd19400f2, type: 3}
       propertyPath: m_Name
       value: Player
@@ -412,13 +416,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686117099}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.30430537, w: 0.95257455}
-  m_LocalPosition: {x: 14.2, y: 0.1, z: 7.5}
-  m_LocalScale: {x: 6.602935, y: 2.9887, z: 6.15194}
+  m_LocalRotation: {x: -0, y: -0, z: 0.15842016, w: 0.9873718}
+  m_LocalPosition: {x: 21.77, y: 2.98, z: 7.5}
+  m_LocalScale: {x: 28.30606, y: 2.9887, z: 6.15194}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 892616586}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 35.433}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 18.23}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,8 +17,8 @@ namespace Combat
     public class Health : MonoBehaviour, IDamageable
     {
         public int MaxHealth { get; private set; }
-        private int CurrentHealth { get; set; }
-
+        public int CurrentHealth { get; private set; }
+        
         public event Action<float> OnDamaged;
         public event Action OnDeath;
 

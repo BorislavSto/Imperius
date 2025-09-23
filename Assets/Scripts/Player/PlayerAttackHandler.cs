@@ -1,6 +1,4 @@
 ﻿using Combat;
-using Core;
-using Player.Input;
 using UnityEngine;
 
 namespace Player

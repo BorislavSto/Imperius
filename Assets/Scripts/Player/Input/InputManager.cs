@@ -1,6 +1,4 @@
-﻿using Player.Input;
-
-namespace Core
+﻿namespace Player
 {
     public class InputManager : Singleton<InputManager>
     {

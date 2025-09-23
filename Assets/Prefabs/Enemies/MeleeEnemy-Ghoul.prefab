@@ -121,7 +121,7 @@ PrefabInstance:
     - target: {fileID: 1383235902428634056, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
       propertyPath: managedReferences[6713221197804077656].m_Value
       value: 
-      objectReference: {fileID: 5532730151335054539}
+      objectReference: {fileID: 0}
     - target: {fileID: 3190112930670589215, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy-Ghoul
@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: damageArea
       value: 
       objectReference: {fileID: 3061796418628557539}
-    - target: {fileID: 7037006329481175177, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
-      propertyPath: enemyData
-      value: 
-      objectReference: {fileID: 11400000, guid: f168ddfbafe010443b1769de9d49e11a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6361224571235769923, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
@@ -225,11 +221,6 @@ PrefabInstance:
       addedObject: {fileID: 3348792745260422753}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce0a8a2c06974f34ba70d198042653d7, type: 3}
---- !u!95 &5532730151335054539 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 95313857884682310, guid: ce0a8a2c06974f34ba70d198042653d7, type: 3}
-  m_PrefabInstance: {fileID: 5591970662639481997}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5587783641049583235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4890821320505870, guid: ce0a8a2c06974f34ba70d198042653d7, type: 3}
