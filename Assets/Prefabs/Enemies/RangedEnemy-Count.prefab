@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 1633896036326255014, guid: a012ce33435213f42967fe6339cd7cf2, type: 3}
       propertyPath: managedReferences[6713221197804077656].m_Value
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7894339492795457109}
     - target: {fileID: 3016128338075207537, guid: a012ce33435213f42967fe6339cd7cf2, type: 3}
       propertyPath: m_Name
       value: RangedEnemy-Count
@@ -203,5 +203,10 @@ Transform:
 --- !u!4 &7842239172579747251 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4293505379981174, guid: 62932fb57e1adde41b35493d4720f61b, type: 3}
+  m_PrefabInstance: {fileID: 7843715917174747845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7894339492795457109 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95747538261257360, guid: 62932fb57e1adde41b35493d4720f61b, type: 3}
   m_PrefabInstance: {fileID: 7843715917174747845}
   m_PrefabAsset: {fileID: 0}

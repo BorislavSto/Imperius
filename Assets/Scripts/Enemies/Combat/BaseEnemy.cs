@@ -20,6 +20,7 @@ namespace Enemies.Combat
             sensor.SetSensorRadius(enemyData.VisionRange);
         }
 
+        // TODO: COULD set up animator, and all other components here too
         private void SetupBehaviorGraph()
         {
             enemyGraph.BlackboardReference.SetVariableValue("WalkingSpeed", enemyData.WalkingSpeed);
