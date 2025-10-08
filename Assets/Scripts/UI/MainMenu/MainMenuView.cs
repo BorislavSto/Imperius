@@ -8,7 +8,6 @@ namespace UI
         [SerializeField] private Button startButton;
         [SerializeField] private Button settingsButton;
         [SerializeField] private Button quitButton;
-        [SerializeField] private GameObject settingsTab;
 
         private MainMenuViewModel viewModel;
 
@@ -22,24 +21,10 @@ namespace UI
             settingsButton.onClick.AddListener(() => viewModel.OnSettingsTriggered());
             quitButton.onClick.AddListener(() => viewModel.OnQuitTriggered());
             
-            Show();
-        }
-        
-        public void SetSettingsVisible(bool visible)
-        {
-            settingsTab.SetActive(visible);
-        }
-        
-        public override void Show()
-        {
-            base.Show();
-            Debug.Log("Main Menu Shown");
+            ShowSettings();
         }
 
-        public override void Hide()
-        {
-            base.Hide();
-            Debug.Log("Main Menu Hidden");
-        }
+        public void ShowSettings() => Show();
+        public void HideSettings() => Hide();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using EventBus;
 
 namespace Player
@@ -10,11 +11,25 @@ namespace Player
         {
             base.Awake();
             InputHandler = gameObject.AddComponent<PlayerInputHandler>();
-            
-            InputHandler.CancelPressedEvent += () =>
-            {
-                EventBus<EscapeButtonPressed>.Raise(new EscapeButtonPressed());
-            };
+
+            InputHandler.CancelPressedEvent += OnEscapeButtonPressed;
+            InputHandler.AnyPressedEvent += OnAnyButtonPressed;
+        } 
+        
+        private void OnDestroy()
+        {
+            InputHandler.CancelPressedEvent -= OnEscapeButtonPressed;
+            InputHandler.AnyPressedEvent -= OnAnyButtonPressed;
+        }
+
+        private void OnEscapeButtonPressed()
+        {
+            EventBus<EscapeButtonPressed>.Raise(new EscapeButtonPressed());
+        }
+
+        private void OnAnyButtonPressed()
+        {
+            EventBus<AnyButtonPressed>.Raise(new AnyButtonPressed());
         }
     }
 }

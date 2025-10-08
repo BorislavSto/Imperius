@@ -14,8 +14,7 @@ namespace EventBus
         public int mana;
     }
 
-    public struct EscapeButtonPressed : IEvent
-    {
-    }
+    public struct EscapeButtonPressed : IEvent {}
+    public struct AnyButtonPressed : IEvent {}
 }
 

@@ -1,60 +1,48 @@
-using EventBus;
-using Unity.VisualScripting;
+using System;
+using Core;
 using UnityEngine;
 
 namespace UI
 {
     public class MainMenuViewModel : ViewModel
     {
-        private MainMenuView view;
-        private MainMenuModel model;
+        private readonly MainMenuView view;
+        private readonly MainMenuModel model;
         
-        private bool showingSettings;
-
-        private EventBinding<EscapeButtonPressed> escapeButtonPressedBinding;
+        private Action escapeAction;
         
-        public MainMenuViewModel(MainMenuView view, MainMenuModel model) : base(view, model)
+        public MainMenuViewModel(MainMenuView view, MainMenuModel model)
         {
             this.view = view;
             this.model = model;
             view.Init(this);
-            
-            escapeButtonPressedBinding = new EventBinding<EscapeButtonPressed>(OnEscapeTriggered);
-            EventBus<EscapeButtonPressed>.Register(escapeButtonPressedBinding);
-        }
-
-        // THIS HAS TO BE REDONE! as unity's GC is non-deterministic it might be cleaned up later than id want it to!!
-        ~MainMenuViewModel()
-        {
-            EventBus<EscapeButtonPressed>.Deregister(escapeButtonPressedBinding);
         }
 
         public void OnStartTriggered()
         {
+            SceneManager.Instance.LoadSceneAndUnloadCurrent("SceneGameplay", true);
             Debug.Log("Start Game clicked! Selected option: " + model.SelectedOption);
         }
 
         public void OnSettingsTriggered()
         {
-            Debug.Log($"Settings clicked! {showingSettings!}");
-         
-            showingSettings = !showingSettings;
-            view.SetSettingsVisible(showingSettings);
+            UIManager.Instance.SettingsSystem.OpenSettings();
         }
 
-        public void OnEscapeTriggered()
+        protected override void OnEscapeTriggered()
         {
-            // close open menu/ go to main menu/ try to quit game
+            OnQuitTriggered();
         }
         
         public void OnQuitTriggered()
         {
-            Debug.Log("Quit clicked!");
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+            UIManager.Instance.PopupSystem.ShowPopup(
+                "Are you sure you want to quit?",
+                new (string, Action)[] {
+                    ("Yes", Application.Quit),
+                    ("No", null)
+                }
+            );
         }
     }
 }

@@ -5,6 +5,7 @@ namespace UI
     public class MainMenuSystem : MonoBehaviour
     {
         [SerializeField] private MainMenuView mainMenuView;
+        
         private MainMenuViewModel mainMenuViewModel;
 
         void Awake()
