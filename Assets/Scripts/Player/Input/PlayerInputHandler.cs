@@ -8,6 +8,9 @@ namespace Player
     {
         private PlayerInputActions playerInput;
 
+        // Any
+        public event Action AnyPressedEvent;
+        
         // Gameplay Events
         private Action<InputAction.CallbackContext> movePerformed;
         private Action<InputAction.CallbackContext> moveCanceled;
@@ -31,10 +34,13 @@ namespace Player
             playerInput = new PlayerInputActions();
             playerInput.Enable();
             
+            // Any
+            playerInput.Gameplay.AnyInput.performed += OnAny;
+            
             // Gameplay Input
             movePerformed = ctx => moveInput = ctx.ReadValue<Vector2>();
             moveCanceled = ctx => moveInput = Vector2.zero;
-        
+            
             playerInput.Gameplay.Move.performed += movePerformed;
             playerInput.Gameplay.Move.canceled += moveCanceled;
         
@@ -53,6 +59,9 @@ namespace Player
         
         private void OnDisable()
         {
+            // Any
+            playerInput.Gameplay.AnyInput.performed -= OnAny;
+            
             // Gameplay Input
             playerInput.Gameplay.Move.performed -= movePerformed;
             playerInput.Gameplay.Move.canceled -= moveCanceled;
@@ -70,6 +79,10 @@ namespace Player
             playerInput.UI.Cancel.performed -= OnCancel;
         }
 
+        // Any
+        private void OnAny(InputAction.CallbackContext ctx) => AnyPressedEvent?.Invoke();
+        
+        // Gameplay Input
         private void OnAttack(InputAction.CallbackContext ctx) => attackPressed = true;
         private void OnDash(InputAction.CallbackContext ctx) => dashPressed = true;
         private void OnInteract(InputAction.CallbackContext ctx) => interactPressed = true;
@@ -102,8 +115,8 @@ namespace Player
             return Vector3.forward;
         }
         
+        // UI Input
         private void OnSubmit(InputAction.CallbackContext ctx) => SubmitPressedEvent?.Invoke();
-
         private void OnCancel(InputAction.CallbackContext ctx) => CancelPressedEvent?.Invoke();
 
         private bool Consume(ref bool flag)

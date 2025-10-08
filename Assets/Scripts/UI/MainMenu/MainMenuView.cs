@@ -6,31 +6,25 @@ namespace UI
     public class MainMenuView : View
     {
         [SerializeField] private Button startButton;
-        [SerializeField] private Button optionsButton;
+        [SerializeField] private Button settingsButton;
         [SerializeField] private Button quitButton;
-        //[SerializeField] private 
 
         private MainMenuViewModel viewModel;
 
         public override void Init(ViewModel vm)
         {
+            base.Init(vm);
+            
             viewModel = vm as MainMenuViewModel;
 
-            optionsButton.onClick.AddListener(() => viewModel.OnOptionsClicked());
-            startButton.onClick.AddListener(() => viewModel.OnStartClicked());
-            quitButton.onClick.AddListener(() => viewModel.OnQuitClicked());
+            startButton.onClick.AddListener(() => viewModel.OnStartTriggered());
+            settingsButton.onClick.AddListener(() => viewModel.OnSettingsTriggered());
+            quitButton.onClick.AddListener(() => viewModel.OnQuitTriggered());
+            
+            ShowSettings();
         }
 
-        public override void Show()
-        {
-            base.Show();
-            Debug.Log("Main Menu Shown");
-        }
-
-        public override void Hide()
-        {
-            base.Hide();
-            Debug.Log("Main Menu Hidden");
-        }
+        public void ShowSettings() => Show();
+        public void HideSettings() => Hide();
     }
 }

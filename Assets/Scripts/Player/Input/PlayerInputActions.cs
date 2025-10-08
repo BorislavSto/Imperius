@@ -163,6 +163,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AnyInput"",
+                    ""type"": ""Button"",
+                    ""id"": ""4feb0f21-d9de-4a3c-95cb-cb9be9d03f5c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -339,6 +348,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c308a3f-fc30-443d-9d5c-c4f97a5454fe"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyInput"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -934,6 +954,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Gameplay_Special1 = m_Gameplay.FindAction("Special1", throwIfNotFound: true);
         m_Gameplay_Special2 = m_Gameplay.FindAction("Special2", throwIfNotFound: true);
         m_Gameplay_Special3 = m_Gameplay.FindAction("Special3", throwIfNotFound: true);
+        m_Gameplay_AnyInput = m_Gameplay.FindAction("AnyInput", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1035,6 +1056,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Special1;
     private readonly InputAction m_Gameplay_Special2;
     private readonly InputAction m_Gameplay_Special3;
+    private readonly InputAction m_Gameplay_AnyInput;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -1078,6 +1100,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Special3".
         /// </summary>
         public InputAction @Special3 => m_Wrapper.m_Gameplay_Special3;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/AnyInput".
+        /// </summary>
+        public InputAction @AnyInput => m_Wrapper.m_Gameplay_AnyInput;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1128,6 +1154,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Special3.started += instance.OnSpecial3;
             @Special3.performed += instance.OnSpecial3;
             @Special3.canceled += instance.OnSpecial3;
+            @AnyInput.started += instance.OnAnyInput;
+            @AnyInput.performed += instance.OnAnyInput;
+            @AnyInput.canceled += instance.OnAnyInput;
         }
 
         /// <summary>
@@ -1163,6 +1192,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Special3.started -= instance.OnSpecial3;
             @Special3.performed -= instance.OnSpecial3;
             @Special3.canceled -= instance.OnSpecial3;
+            @AnyInput.started -= instance.OnAnyInput;
+            @AnyInput.performed -= instance.OnAnyInput;
+            @AnyInput.canceled -= instance.OnAnyInput;
         }
 
         /// <summary>
@@ -1519,6 +1551,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSpecial3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AnyInput" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAnyInput(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

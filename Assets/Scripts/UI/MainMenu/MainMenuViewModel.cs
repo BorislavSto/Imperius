@@ -1,34 +1,48 @@
+using System;
+using Core;
 using UnityEngine;
 
 namespace UI
 {
     public class MainMenuViewModel : ViewModel
     {
-        private MainMenuView view;
-        private MainMenuModel model;
-
-        public MainMenuViewModel(MainMenuView view, MainMenuModel model) : base(view, model)
+        private readonly MainMenuView view;
+        private readonly MainMenuModel model;
+        
+        private Action escapeAction;
+        
+        public MainMenuViewModel(MainMenuView view, MainMenuModel model)
         {
             this.view = view;
             this.model = model;
             view.Init(this);
         }
 
-        public void OnStartClicked()
+        public void OnStartTriggered()
         {
+            SceneManager.Instance.LoadSceneAndUnloadCurrent("SceneGameplay", true);
             Debug.Log("Start Game clicked! Selected option: " + model.SelectedOption);
-            // Could trigger UIManager or GameManager to switch scenes
         }
 
-        public void OnOptionsClicked()
+        public void OnSettingsTriggered()
         {
-            Debug.Log("Options clicked!");
-            // Could open options menu
+            UIManager.Instance.SettingsSystem.OpenSettings();
         }
 
-        public void OnQuitClicked()
+        protected override void OnEscapeTriggered()
         {
-            Debug.Log("Quit clicked!");
+            OnQuitTriggered();
+        }
+        
+        public void OnQuitTriggered()
+        {
+            UIManager.Instance.PopupSystem.ShowPopup(
+                "Are you sure you want to quit?",
+                new (string, Action)[] {
+                    ("Yes", Application.Quit),
+                    ("No", null)
+                }
+            );
         }
     }
 }
