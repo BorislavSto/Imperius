@@ -14,6 +14,7 @@ namespace Player
         // Gameplay Events
         private Action<InputAction.CallbackContext> movePerformed;
         private Action<InputAction.CallbackContext> moveCanceled;
+        public event Action InteractPressedEvent;
         
         // Gameplay Variables
         private Vector2 moveInput;
@@ -59,6 +60,8 @@ namespace Player
         
         private void OnDisable()
         {
+            playerInput.Disable();
+            
             // Any
             playerInput.Gameplay.AnyInput.performed -= OnAny;
             
@@ -85,7 +88,13 @@ namespace Player
         // Gameplay Input
         private void OnAttack(InputAction.CallbackContext ctx) => attackPressed = true;
         private void OnDash(InputAction.CallbackContext ctx) => dashPressed = true;
-        private void OnInteract(InputAction.CallbackContext ctx) => interactPressed = true;
+
+        private void OnInteract(InputAction.CallbackContext ctx)
+        {
+            InteractPressedEvent?.Invoke();
+            interactPressed = true;
+        }
+
         private void OnInventory(InputAction.CallbackContext ctx) => inventoryPressed = true;
         private void OnSpecial1(InputAction.CallbackContext ctx) => special1Pressed = true;
         private void OnSpecial2(InputAction.CallbackContext ctx) => special2Pressed = true;

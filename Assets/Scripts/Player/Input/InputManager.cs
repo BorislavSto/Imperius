@@ -1,4 +1,3 @@
-using System;
 using EventBus;
 
 namespace Player
