@@ -9,6 +9,7 @@ namespace Enemies.Combat
     {
         [SerializeField] private BehaviorGraphAgent enemyGraph;
         [SerializeField] private BaseEnemyData enemyData;
+        [SerializeField] private Sensor sensor; // reference to be set in inspector so as to not use GetComponentInChildren
         
         protected override void Start()
         {
@@ -16,7 +17,6 @@ namespace Enemies.Combat
             
             base.Start();
             
-            Sensor sensor = GetComponent<Sensor>();
             sensor.SetSensorRadius(enemyData.VisionRange);
         }
 
@@ -51,8 +51,8 @@ namespace Enemies.Combat
 
         protected override void HealthOnDeath()
         {
-            SetIsDead();
             Debug.Log("BaseEnemy HealthOnDeath");
+            SetIsDead();
         }
 
         protected override int GetMaxHealth() => enemyData.Health;

@@ -51,6 +51,7 @@ namespace Combat
                     DisableDamage();
                 }
             }
+            
             // Check if it's terrain/environment
             else if ((otherLayer & terrainLayer) != 0)
             {

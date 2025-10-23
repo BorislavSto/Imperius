@@ -25,7 +25,7 @@ public partial class EnemyAttacksPlayerAction : Action
             Animator = EnemyAnimator.Value,
             Audio = Agent.Value.GetComponent<AudioSource>(),
             Attacker = Agent.Value,
-            Target = Target.Value.transform,
+            TargetLocation = Target.Value.transform.position,
         };
         
         Attack.Value.Attack(ctx, () => attackFinished = true);

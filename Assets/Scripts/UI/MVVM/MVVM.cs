@@ -79,6 +79,9 @@ namespace UI
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
         }
+        
+        public void ShowView() => Show();
+        public void HideView() => Hide();
     }
 
     public class ViewModel
@@ -88,12 +91,6 @@ namespace UI
         protected ViewModel()
         {
             escapeAction = OnEscapeTriggered;
-        }
-
-        // THIS HAS TO BE REDONE! as unity's GC is non-deterministic it might be cleaned up later than id want it to!!
-        ~ViewModel()
-        {
-            UIManager.Instance.PopEscapeAction(escapeAction);
         }
 
         // triggered on Show in View
@@ -107,7 +104,22 @@ namespace UI
         {
             UIManager.Instance.PopEscapeAction(escapeAction);
         }
+
+        public virtual void Dispose()
+        {
+            UIManager.Instance.PopEscapeAction(escapeAction);
+        }
         
         protected virtual void OnEscapeTriggered() {}
+    }
+
+    public class MvvmSystem<T> : MonoBehaviour where T : ViewModel
+    {
+        protected T viewModel;
+        
+        private void OnDestroy()
+        {
+            viewModel?.Dispose();
+        }
     }
 }

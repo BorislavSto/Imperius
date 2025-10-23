@@ -21,10 +21,7 @@ namespace UI
             settingsButton.onClick.AddListener(() => viewModel.OnSettingsTriggered());
             quitButton.onClick.AddListener(() => viewModel.OnQuitTriggered());
             
-            ShowSettings();
+            ShowView();
         }
-
-        public void ShowSettings() => Show();
-        public void HideSettings() => Hide();
     }
 }

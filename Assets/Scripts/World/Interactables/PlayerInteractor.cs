@@ -26,7 +26,7 @@ public class PlayerInteractor : MonoBehaviour
             if (interactable != null)
             {
                 Debug.Log("Interacting with " + hitCollider.name);
-                interactable.Interact();
+                interactable.Interact(gameObject);
                 break;
             }
         }

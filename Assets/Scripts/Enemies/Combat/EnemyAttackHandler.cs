@@ -1,40 +1,55 @@
 ﻿using System;
 using Combat;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Enemies.Combat
 {
     public class EnemyAttackHandler : AttackHandler
     {
+        [SerializeField] private AttackData[] enemyAttackDatas;
+
+        private new void Awake()
+        {
+            AttackDatas = enemyAttackDatas;
+            base.Awake();
+        }
+        
         public override void Attack(AttackContext ctx, Action onFinish = null)
         {
-            AttackData data = ChooseAttack(ctx);
+            int bestSlotIndex = ChooseAttackSlot(ctx);
 
-            Attack(data, ctx, onFinish);
+            if (bestSlotIndex >= 0)
+                AttackByIndex(bestSlotIndex, ctx, onFinish);
+            else
+                Debug.Log("No attacks available for enemy!");
         }
 
-        private AttackData ChooseAttack(AttackContext ctx)
+        private int ChooseAttackSlot(AttackContext ctx)
         {
-            AttackData bestAttack = null;
+            int bestSlotIndex = -1;
             float bestScore = float.MinValue;
 
-            foreach (var data in attackDatas)
+            for (int i = 0; i < AttackDatas.Length; i++)
             {
-                if (cooldownTimers[data] > 0f)
+                if (IsSlotOnCooldown(i))
                     continue;
 
-                float score = EvaluateAttack(data, ctx);
+                float score = EvaluateAttack(AttackDatas[i], ctx);
 
                 if (score > bestScore)
                 {
                     bestScore = score;
-                    bestAttack = data;
+                    bestSlotIndex = i;
                 }
             }
 
-            // fallback if nothing ready
-            return bestAttack ?? attackDatas[Random.Range(0, attackDatas.Length)];
+            // Fallback: if nothing ready, pick a random slot (even if on cooldown)
+            if (bestSlotIndex < 0 && AttackDatas.Length > 0)
+            {
+                bestSlotIndex = UnityEngine.Random.Range(0, AttackDatas.Length);
+            }
+
+            return bestSlotIndex;
         }
 
         private float EvaluateAttack(AttackData data, AttackContext ctx)
@@ -44,7 +59,7 @@ namespace Enemies.Combat
             score += data.damage; // higher damage = better
             score -= data.windup * 2f; // slower attacks get penalized
 
-            float distance = Vector3.Distance(ctx.Attacker.transform.position, ctx.Target.position);
+            float distance = Vector3.Distance(ctx.Attacker.transform.position, ctx.TargetLocation);
             if (distance < 3f && attackerType == AttackerType.Melee)
                 score += 10f; // bonus for melee when close
             else if (distance > 5f && attackerType == AttackerType.Ranged)

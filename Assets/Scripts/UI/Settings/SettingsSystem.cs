@@ -2,21 +2,19 @@
 
 namespace UI
 {
-    public class SettingsSystem : MonoBehaviour
+    public class SettingsSystem : MvvmSystem<SettingsViewModel>
     {
         [SerializeField] private SettingsView view;
-
-        private SettingsViewModel viewModel;
 
         private void Awake()
         {
             viewModel = new SettingsViewModel(view, new SettingsModel());
-            view.HideSettings();
+            viewModel.HideSettings();
         }
 
         public void OpenSettings()
         {
-            view.ShowSettings();
+            viewModel.ShowSettings();
         }
     }
 }

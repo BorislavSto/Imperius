@@ -1822,7 +1822,7 @@ Transform:
   - {fileID: 4073374341882111545}
   m_Father: {fileID: 7080269643026654835}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6229146756091260836
+--- !u!1 &6301072916175019141
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1830,22 +1830,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7474114957738883305}
-  - component: {fileID: 2259424766255855000}
+  - component: {fileID: 7974940351056798572}
+  - component: {fileID: 5855181646844473462}
   m_Layer: 3
-  m_Name: PlayerInteractor
+  m_Name: PlayerModelLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7474114957738883305
+--- !u!4 &7974940351056798572
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6229146756091260836}
+  m_GameObject: {fileID: 6301072916175019141}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1854,22 +1854,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2636838806771574425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2259424766255855000
+--- !u!114 &5855181646844473462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6229146756091260836}
+  m_GameObject: {fileID: 6301072916175019141}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4339859fdaab4459ab25bf8266cfcbb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 51a659de55f909148b668785212fda78, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
-  interactSphereRange: 2
-  interactableLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
+  m_EditorClassIdentifier: Player::SetPlayerModel
+  skinnedMeshRenderer: {fileID: 5290456529107169485}
+  meshToLoad: {fileID: 4300028, guid: 32562d1256a1b3b4ca9be3d6ce7adf64, type: 3}
 --- !u!1 &6362566770879812729
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,6 +2578,8 @@ GameObject:
   - component: {fileID: 3256550721447598065}
   - component: {fileID: 2523480752898544971}
   - component: {fileID: 5311485104921602128}
+  - component: {fileID: 3337242826219957690}
+  - component: {fileID: 6048232133662272473}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -2601,8 +2601,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1563842209486647139}
-  - {fileID: 7474114957738883305}
   - {fileID: 5311144551633709914}
+  - {fileID: 7974940351056798572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &7387632171802162255
@@ -2709,12 +2709,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4241e2a7471c0a419206e04564f2466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerController
-  maxStableMoveSpeed: 6
+  runSpeed: 6
   stableMovementSharpness: 15
+  rotationSharpness: 15
   maxAirMoveSpeed: 4
   airAccelerationSpeed: 5
   drag: 0.1
   gravity: {x: 0, y: -20, z: 0}
+  dashSpeed: 15
+  dashDuration: 0.2
+  dashCooldown: 1
+  animationSpeedDamping: 0.1
+  animator: {fileID: 5857837028049023951}
 --- !u!114 &1584027298828759563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2763,14 +2769,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eda4c0087fd49f59391b3fc62fb30e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackHandler
-  attackDatas:
-  - {fileID: 11400000, guid: bc257ce986bf7b54fbc315be28dbfa88, type: 2}
   attackerType: 2
   damageArea: {fileID: 0}
   dmgRelay: {fileID: 0}
   shootOrigin: {fileID: 5311144551633709914}
-  useMouseAiming: 1
   playerTransform: {fileID: 2636838806771574425}
+  radius: 5
+--- !u!114 &3337242826219957690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8102031018512780498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9418f33799fa452ea06c2c23e24e23e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Player::Combat.PlayerAttackDataHandler
+  attackHandler: {fileID: 0}
+  startingAttacks: []
+  maxAttackSlots: 4
+--- !u!114 &6048232133662272473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8102031018512780498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4339859fdaab4459ab25bf8266cfcbb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
+  interactSphereRange: 2
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &8289948076599610088
 GameObject:
   m_ObjectHideFlags: 0

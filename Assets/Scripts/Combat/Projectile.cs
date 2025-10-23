@@ -20,14 +20,10 @@ namespace Combat
         private void HandleHitEffects(Vector3 hitPoint, Vector3 hitNormal)
         {
             if (hitEffectPrefab != null)
-            {
                 Instantiate(hitEffectPrefab, hitPoint, Quaternion.LookRotation(hitNormal));
-            }
 
             if (destroyOnHit)
-            {
                 Destroy(gameObject);
-            }
         }
     }
 }

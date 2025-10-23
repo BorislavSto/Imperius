@@ -55,8 +55,5 @@ namespace UI
         {
             return audioMenu.activeSelf || gameplayMenu.activeSelf || graphicsMenu.activeSelf;
         }
-        
-        public void ShowSettings() => Show();
-        public void HideSettings() => Hide();
     }
 }

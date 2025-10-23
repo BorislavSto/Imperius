@@ -1,108 +1,134 @@
-﻿using Combat;
+﻿using System;
+using System.Collections.Generic;
+using Combat;
+using Core;
+using EventBus;
 using UnityEngine;
 
 namespace Player
 {
-    /// <summary>
-    /// VERY SIMPLE PLAYER ATTACK HANDLER JUST FOR TESTING
-    /// This is a script meant to test if the attack handler is ->
-    /// versatile and usable for both enemies and the player and if
-    /// all attack types work for both!!
-    /// </summary>
+    [RequireComponent(typeof(PlayerAttackDataHandler))]
     public class PlayerAttackHandler : AttackHandler
     {
-        [Header("Player Attack Configuration")] [SerializeField]
-        private bool useMouseAiming = true;
-
+        private const string EnemyTag = "Enemy";
+        
+        [Header("Player Attack Configuration")] 
         [SerializeField] private Transform playerTransform;
-
+        [SerializeField] private float radius = 5f;
+        
         private PlayerInputHandler inputHandler;
+        private PlayerController playerController;
 
         private void Start()
         {
             inputHandler = InputManager.Instance.InputHandler;
+            playerController = GetComponent<PlayerController>();
 
             if (playerTransform == null)
                 playerTransform = transform;
+
+            inputHandler.AttackPressedEvent += HandleAttackInput;
         }
 
-        protected override void Update()
-        {
-            base.Update();
-
-            HandleAttackInput();
+        private void OnDestroy()
+        { 
+            inputHandler.AttackPressedEvent -= HandleAttackInput;
         }
 
-        private void HandleAttackInput()
+        private void HandleAttackInput(int attackNumber)
         {
             if (inputHandler == null)
                 inputHandler = InputManager.Instance.InputHandler;
 
+            ExecuteAttackByIndex(attackNumber);
+        }
+
+        private void ExecuteAttackByIndex(int slotIndex)
+        {
+            if (slotIndex < 0 || slotIndex >= AttackDatas.Length)
+            {
+                Debug.LogWarning($"Attack index {slotIndex} is out of range. Available attacks: {AttackDatas.Length}");
+                return;
+            }
+
+            if (AttackDatas[slotIndex] == null)
+            {
+                Debug.LogWarning($"Attack index {slotIndex} is null/empty.");
+                return;
+            }
+            
+            if (IsSlotOnCooldown(slotIndex))
+            {
+                float remaining = GetSlotCooldown(slotIndex);
+                Debug.Log($"Attack slot {slotIndex} is on cooldown: {remaining:F1}s remaining");
+                return;
+            }
+            
+            AttackData attackData = AttackDatas[slotIndex];
             AttackContext ctx = CreateAttackContext();
-
-            if (inputHandler.AttackPressed)
-            {
-                ExecuteAttackByIndex(0, ctx);
-            }
-
-            if (inputHandler.Skill1Pressed)
-            {
-                ExecuteAttackByIndex(1, ctx);
-            }
-
-            if (inputHandler.Skill2Pressed)
-            {
-                ExecuteAttackByIndex(2, ctx);
-            }
-
-            if (inputHandler.Skill3Pressed)
-            {
-                ExecuteAttackByIndex(3, ctx);
-            }
+            
+            // Notify UI that attack was used
+            EventBus<AttackUsed>.Raise(new AttackUsed(attackData, slotIndex));
+            
+            // Execute the attack (cooldown starts automatically in base class)
+            AttackByIndex(slotIndex, ctx, OnAttackFinished);
         }
 
         private AttackContext CreateAttackContext()
         {
-            Vector3 aimDirection = Vector3.forward;
-
-            if (useMouseAiming)
+            return new AttackContext
             {
-                aimDirection = inputHandler.GetAimDirection(playerTransform.position);
+                Animator = GetComponentInChildren<Animator>(),
+                Audio = GetComponent<AudioSource>(),
+                Attacker = gameObject,
+                TargetLocation = CheckAroundPlayerForEnemies(),
+            };
+        }
+        
+        private Vector3 CheckAroundPlayerForEnemies()
+        {
+            Collider[] hits = Physics.OverlapSphere(playerTransform.position, radius);
+            Vector3 closestEnemy = Vector3.zero;
+            float closestDistance = Mathf.Infinity;
+
+            foreach (var hit in hits)
+            {
+                if (hit.CompareTag(EnemyTag))
+                {
+                    float distance = Vector3.Distance(playerTransform.position, hit.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestEnemy = hit.transform.position;
+                    }
+                }
+            }
+            
+            if (closestEnemy == Vector3.zero)
+            {
+                closestEnemy = playerTransform.position + playerTransform.forward * 10f; // just a point in front of the player
             }
             else
             {
-                float horizontal = inputHandler.MoveHorizontal;
-                float vertical = inputHandler.MoveVertical;
-
-                if (horizontal != 0f || vertical != 0f)
-                    aimDirection = new Vector3(horizontal, 0f, vertical).normalized;
-                else
-                    aimDirection = playerTransform.forward;
+                playerController.SetRotationToTarget(closestEnemy);
             }
 
-            return new AttackContext
-            {
-                Animator = GetComponent<Animator>(),
-                Audio = GetComponent<AudioSource>(),
-                Attacker = gameObject,
-                //Target = // for now cant get the target simple test script
-            };
-        }
-
-        private void ExecuteAttackByIndex(int index, AttackContext ctx)
-        {
-            if (index < 0 || index >= attackDatas.Length)
-            {
-                Debug.LogWarning($"Attack index {index} is out of range. Available attacks: {attackDatas.Length}");
-                return;
-            }
-
-            AttackData attackData = attackDatas[index];
-            Attack(attackData, ctx, OnAttackFinished);
+            return closestEnemy;
         }
 
         private void OnAttackFinished()
         {
+            playerController.ClearRotationToTarget();
+            Debug.Log("Attack finished!");
+        }
+        
+        private void OnDrawGizmos()
+        {
+            if (playerTransform == null)
+                playerTransform = transform;
+            
+            Gizmos.color = Color.chartreuse;
+            Gizmos.DrawWireSphere(playerTransform.position, radius);
         }
     }
 }

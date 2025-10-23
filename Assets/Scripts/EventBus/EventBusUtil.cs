@@ -11,8 +11,8 @@ namespace EventBus
     /// </summary>
     public static class EventBusUtil
     {
-        public static IReadOnlyList<Type> EventTypes { get; set; }
-        public static IReadOnlyList<Type> EventBusTypes { get; set; }
+        private static IReadOnlyList<Type> EventTypes { get; set; }
+        private static IReadOnlyList<Type> EventBusTypes { get; set; }
 
 #if UNITY_EDITOR
         public static PlayModeStateChange PlayModeState { get; set; }
@@ -33,7 +33,7 @@ namespace EventBus
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         }
 
-        static void OnPlayModeStateChanged(PlayModeStateChange state)
+        private static void OnPlayModeStateChanged(PlayModeStateChange state)
         {
             PlayModeState = state;
             if (state == PlayModeStateChange.ExitingPlayMode)
@@ -75,7 +75,7 @@ namespace EventBus
         /// <summary>
         /// Clears (removes all listeners from) all event buses in the application.
         /// </summary>
-        public static void ClearAllBuses()
+        private static void ClearAllBuses()
         {
             Debug.Log("Clearing all buses...");
             for (int i = 0; i < EventBusTypes.Count; i++)
