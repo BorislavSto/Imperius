@@ -52,7 +52,6 @@ namespace Combat
                 if (currentAttacks[i] == null)
                 {
                     currentAttacks[i] = newAttack;
-                    Debug.Log($"Filled empty slot {i} with {newAttack.name}");
                     UpdateAttackHandler();
                     return true;
                 }
@@ -61,7 +60,6 @@ namespace Combat
             if (currentAttacks.Count < maxAttackSlots)
             {
                 currentAttacks.Add(newAttack);
-                Debug.Log($"Added new attack {newAttack.name} to slot {currentAttacks.Count - 1}");
                 UpdateAttackHandler();
                 return true;
             }
@@ -91,10 +89,8 @@ namespace Combat
                 return false;
             }
             
-            AttackData oldAttack = currentAttacks[slotIndex];
             currentAttacks[slotIndex] = newAttack;
             UpdateAttackHandler();
-            Debug.Log($"Replaced attack at slot {slotIndex}: {oldAttack?.name} -> {newAttack.name}");
             return true;
         }
 
@@ -115,9 +111,7 @@ namespace Combat
 
             AttackData removed = currentAttacks[slotIndex];
             currentAttacks[slotIndex] = null;
-            //currentAttacks.RemoveAt(slotIndex);
             UpdateAttackHandler();
-            Debug.Log($"Removed attack from slot {slotIndex}: {removed?.name}");
             return true;
         }
 
@@ -146,7 +140,6 @@ namespace Combat
 
             (currentAttacks[slotA], currentAttacks[slotB]) = (currentAttacks[slotB], currentAttacks[slotA]);
             UpdateAttackHandler();
-            Debug.Log($"Swapped attacks: slot {slotA} <-> slot {slotB}");
             return true;
         }
 
@@ -180,7 +173,6 @@ namespace Combat
         {
             currentAttacks.Clear();
             UpdateAttackHandler();
-            Debug.Log("Cleared all attacks");
         }
 
         public void SetAttacks(AttackData[] newAttacks)
@@ -198,7 +190,6 @@ namespace Combat
             }
 
             UpdateAttackHandler();
-            Debug.Log($"Set new attacks: {currentAttacks.Count} attacks loaded");
         }
 
         public AttackData GetAttack(int slotIndex)

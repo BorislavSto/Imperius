@@ -11,6 +11,7 @@ namespace UI
         
         private EventBinding<PlayerAttacksChanged> attacksChangedBinding;
         private EventBinding<AttackUsed> attackUsedBinding;
+        private EventBinding<PlayerDataEvent> playerDataEventBinding;
         
         public GameplayUIViewModel(GameplayUIView view, GameplayUIModel model)
         {
@@ -22,14 +23,15 @@ namespace UI
             
             attacksChangedBinding = new EventBinding<PlayerAttacksChanged>(OnPlayerAttacksChanged);
             attackUsedBinding = new EventBinding<AttackUsed>(OnPlayerAttackUsed);
+            playerDataEventBinding = new EventBinding<PlayerDataEvent>(OnPlayerDataUpdated);
             
             EventBus<PlayerAttacksChanged>.Register(attacksChangedBinding);
             EventBus<AttackUsed>.Register(attackUsedBinding);
+            EventBus<PlayerDataEvent>.Register(playerDataEventBinding);
         }
         
         private void OnPlayerAttacksChanged(PlayerAttacksChanged obj)
         {
-            Debug.Log(obj.NewAttacks.Length);
             view.UpdateUIAddingAttack(obj.NewAttacks);
         }
 
@@ -37,11 +39,17 @@ namespace UI
         {
             view.UpdateUIAttackSlotCooldown(obj.SlotIndex);
         }
+        
+        private void OnPlayerDataUpdated(PlayerDataEvent obj)
+        {
+            view.UpdateUIPlayerData(obj.PlayerData);
+        }
 
         public override void Dispose()
         {
             EventBus<PlayerAttacksChanged>.Deregister(attacksChangedBinding);
             EventBus<AttackUsed>.Deregister(attackUsedBinding);
+            EventBus<PlayerDataEvent>.Deregister(playerDataEventBinding);
             base.Dispose();
         }
     }

@@ -55,9 +55,10 @@ namespace Combat
             // Check if it's terrain/environment
             else if ((otherLayer & terrainLayer) != 0)
             {
-                Vector3 hitPoint = other.ClosestPoint(transform.position);
-                Vector3 hitNormal = (transform.position - hitPoint).normalized;
-                OnTerrainHit?.Invoke(hitPoint, hitNormal);
+                if (Physics.Raycast(transform.position - transform.forward * 0.5f, transform.forward, out RaycastHit hit, 2f, terrainLayer))
+                    OnTerrainHit?.Invoke(hit.point, hit.normal);
+                else
+                    OnTerrainHit?.Invoke(transform.position, Vector3.up);
 
                 DisableDamage();
             }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Combat;
-using Core;
+﻿using Combat;
 using EventBus;
 using UnityEngine;
 
@@ -13,17 +10,19 @@ namespace Player
         private const string EnemyTag = "Enemy";
         
         [Header("Player Attack Configuration")] 
-        [SerializeField] private Transform playerTransform;
         [SerializeField] private float radius = 5f;
+        private Transform playerTransform;
         
         private PlayerInputHandler inputHandler;
         private PlayerController playerController;
+        private PlayerCharacter playerCharacter;
 
         private void Start()
         {
             inputHandler = InputManager.Instance.InputHandler;
             playerController = GetComponent<PlayerController>();
-
+            playerCharacter = GetComponent<PlayerCharacter>();
+            
             if (playerTransform == null)
                 playerTransform = transform;
 
@@ -65,10 +64,17 @@ namespace Player
             }
             
             AttackData attackData = AttackDatas[slotIndex];
+
+            if (!playerCharacter.UseMana(attackData.manaCost))
+            {
+                Debug.Log($"Not Enough mana to cast {attackData}. Mana to cast {attackData.manaCost}/ available mana {playerCharacter.CurrentMana}");
+                return;
+            }
+            
             AttackContext ctx = CreateAttackContext();
             
             // Notify UI that attack was used
-            EventBus<AttackUsed>.Raise(new AttackUsed(attackData, slotIndex));
+            EventBus<AttackUsed>.Raise(new AttackUsed(slotIndex));
             
             // Execute the attack (cooldown starts automatically in base class)
             AttackByIndex(slotIndex, ctx, OnAttackFinished);
@@ -105,13 +111,9 @@ namespace Player
             }
             
             if (closestEnemy == Vector3.zero)
-            {
                 closestEnemy = playerTransform.position + playerTransform.forward * 10f; // just a point in front of the player
-            }
             else
-            {
                 playerController.SetRotationToTarget(closestEnemy);
-            }
 
             return closestEnemy;
         }
@@ -119,7 +121,6 @@ namespace Player
         private void OnAttackFinished()
         {
             playerController.ClearRotationToTarget();
-            Debug.Log("Attack finished!");
         }
         
         private void OnDrawGizmos()

@@ -6,6 +6,7 @@ namespace Combat
     public abstract class Entity : MonoBehaviour
     {
         public bool IsDead {get; private set;}
+        protected Health Health {get ; private set;}
         
         protected virtual void Start()
         {
@@ -14,21 +15,21 @@ namespace Combat
 
         protected virtual void InitializeEntity()
         {
-            Health health = GetComponent<Health>();
-            if (health is null)
+            Health = GetComponent<Health>();
+            if (Health is null)
             {
                 Debug.LogError("Health is null", this);
                 return;
             }
             
-            health.Init(GetMaxHealth());
-            health.OnDamaged += HealthOnDamaged;
-            health.OnDeath += HealthOnDeath;
+            Health.Init(SetMaxHealthInHealth());
+            Health.OnDamaged += HealthOnDamaged;
+            Health.OnDeath += HealthOnDeath;
         }
 
         protected void SetIsDead() => IsDead = true;
         protected abstract void HealthOnDamaged(float damageAmount);
         protected abstract void HealthOnDeath();
-        protected abstract int GetMaxHealth();
+        protected abstract int SetMaxHealthInHealth();
     }
 }

@@ -78,12 +78,12 @@ namespace EventBus
         private static void ClearAllBuses()
         {
             Debug.Log("Clearing all buses...");
-            for (int i = 0; i < EventBusTypes.Count; i++)
+            foreach (var busType in EventBusTypes)
             {
-                var busType = EventBusTypes[i];
                 var clearMethod = busType.GetMethod("Clear", BindingFlags.Static | BindingFlags.NonPublic);
                 clearMethod?.Invoke(null, null);
             }
+            Debug.Log("All busses cleared!");
         }
     }
 }

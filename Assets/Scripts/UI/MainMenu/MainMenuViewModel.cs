@@ -23,8 +23,6 @@ namespace UI
             // Gameplay UI has to be loaded additively before the gameplay scene to allow proper initialization
             SceneManager.Instance.LoadMultipleScenesAndUnloadCurrent(
                 new [] { SceneNames.SceneGameplayUI, SceneNames.SceneGameplay }, true);
-            
-            Debug.Log("Start Game clicked! Selected option: " + model.SelectedOption);
         }
 
         public void OnSettingsTriggered()

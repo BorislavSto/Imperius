@@ -14,6 +14,7 @@ namespace Combat
         public float windup = 0.2f;
         public float recovery = 0.4f;
         public int damage = 10;
+        public int manaCost = 20;
         public LayerMask hitMask;
         public AudioClip sfx;
 

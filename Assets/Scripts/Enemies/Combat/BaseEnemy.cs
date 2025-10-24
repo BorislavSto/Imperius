@@ -55,6 +55,6 @@ namespace Enemies.Combat
             SetIsDead();
         }
 
-        protected override int GetMaxHealth() => enemyData.Health;
+        protected override int SetMaxHealthInHealth() => enemyData.Health;
     }
 }

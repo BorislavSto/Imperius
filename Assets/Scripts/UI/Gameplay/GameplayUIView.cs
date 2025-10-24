@@ -9,11 +9,16 @@ namespace UI
     public class GameplayUIView : View
     {
         private GameplayUIViewModel viewModel;
-
+        
         [SerializeField] private Image background;
+        
+        [Header("Health and Mana")]
+        [SerializeField] private StatusBarUI healthBar;
+        [SerializeField] private StatusBarUI manaBar;
+        
+        [Header("Attacks")]
         [SerializeField] private List<AttackUISlot> attackButtons = new();
         
-        // here i can do things such as change the textures, health etc
         public void UpdateUIAddingAttack(AttackData[] attacks)
         {
             for (int i = 0; i < attackButtons.Count; i++)
@@ -38,6 +43,21 @@ namespace UI
                 return;
             
             attackButtons[attackIndex].TriggerCooldown();
+        }
+        
+        public void UpdateUIPlayerData(PlayerGameplayData data)
+        {
+            if (!healthBar.IsSetUp)
+                healthBar.SetStats(data.Health);
+
+            if (!manaBar.IsSetUp)
+                manaBar.SetStats(data.Mana, true, data.ManaRechargeRate, data.ManaRechargeAmount);
+            
+            if (healthBar.FillAmount != data.Health)
+                healthBar.SetFillAmount(data.Health);
+
+            if (manaBar.FillAmount != data.Mana)
+                manaBar.SetFillAmount(data.Mana);
         }
     }
 }

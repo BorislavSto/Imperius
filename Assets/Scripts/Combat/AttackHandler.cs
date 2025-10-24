@@ -70,10 +70,7 @@ namespace Combat
 
         protected virtual void Update()
         {
-            // Update all slot cooldowns
             var keys = new List<int>(cooldownTimers.Keys);
-            
-            Debug.Log($"cooldown timer count: {cooldownTimers.Count}");
             
             foreach (var slotIndex in keys)
             {
@@ -86,7 +83,6 @@ namespace Combat
             }
         }
 
-        // New method: Attack by slot index
         protected void AttackByIndex(int slotIndex, AttackContext ctx, System.Action onFinish = null)
         {
             if (slotIndex < 0 || slotIndex >= AttackDatas.Length)
@@ -157,14 +153,12 @@ namespace Combat
             shootOrigin = origin;
         }
 
-        // Helper to update attacks dynamically
         public void UpdateAttackSlots(AttackData[] newAttacks)
         {
             AttackDatas = newAttacks;
             InitializeNewCooldowns();
         }
 
-        // NEW: Get specific attack data
         public AttackData GetAttackData(int slotIndex)
         {
             if (slotIndex < 0 || slotIndex >= AttackDatas.Length)
