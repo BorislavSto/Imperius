@@ -1788,6 +1788,7 @@ Transform:
   - {fileID: 8559666565425520055}
   - {fileID: 4426515355390311918}
   - {fileID: 1418977360584806737}
+  - {fileID: 5311144551633709914}
   m_Father: {fileID: 2959454526169228895}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5505659150885533497
@@ -1867,7 +1868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Player::SetPlayerModel
   skinnedMeshRenderer: {fileID: 5290456529107169485}
-  meshToLoad: {fileID: 4300028, guid: 32562d1256a1b3b4ca9be3d6ce7adf64, type: 3}
+  meshToLoad: {fileID: 4300020, guid: d288a0e4a2d923b46898986e979da643, type: 3}
 --- !u!1 &6362566770879812729
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +2318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5311144551633709914}
   m_Layer: 3
-  m_Name: testoriginpoint
+  m_Name: InitialRangedOriginPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2331,12 +2332,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7302363782574404140}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.71, y: 1.55, z: 0.24}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -1, y: 0.000000037563847, z: 0.000000029802319, w: 0.00000011793907}
+  m_LocalPosition: {x: 2.8368056, y: -1.6060029, z: -0.71738744}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2636838806771574425}
+  m_Father: {fileID: 7080269643026654835}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7453812334663866456
 GameObject:
@@ -2601,7 +2602,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1563842209486647139}
-  - {fileID: 5311144551633709914}
   - {fileID: 7974940351056798572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2757,6 +2757,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c3d26dcf7f474684a80b3738e04429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCharacter
+  maxHealth: 50
+  maxMana: 50
+  manaRechargeAmount: 1
+  manaRechargeRate: 1
 --- !u!114 &5311485104921602128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2773,8 +2777,7 @@ MonoBehaviour:
   damageArea: {fileID: 0}
   dmgRelay: {fileID: 0}
   shootOrigin: {fileID: 5311144551633709914}
-  playerTransform: {fileID: 2636838806771574425}
-  radius: 5
+  radius: 6
 --- !u!114 &3337242826219957690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2787,8 +2790,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9418f33799fa452ea06c2c23e24e23e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Player::Combat.PlayerAttackDataHandler
-  attackHandler: {fileID: 0}
-  startingAttacks: []
+  startingAttacks:
+  - {fileID: 11400000, guid: ae28467dc0b649c4c9f7d205cdaf300d, type: 2}
+  - {fileID: 11400000, guid: ae28467dc0b649c4c9f7d205cdaf300d, type: 2}
   maxAttackSlots: 4
 --- !u!114 &6048232133662272473
 MonoBehaviour:

@@ -16,9 +16,10 @@ MonoBehaviour:
   attackName: BlankAttack
   animationTrigger: RangedAttack
   cooldown: 6
-  windup: 0.2
+  windup: 0.6
   recovery: 0.4
   damage: 10
+  manaCost: 20
   hitMask:
     serializedVersion: 2
     m_Bits: 64

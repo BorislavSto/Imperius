@@ -17,9 +17,9 @@ public partial class EnemyAttacksPlayerAction : Action
 
     protected override Status OnStart()
     {
-        if (Agent.Value is null || Target.Value is null || Attack.Value is null)
+        if (Agent.Value is null || Target.Value is null || Attack.Value is null || Attack.Value.IsAttacking)
             return Status.Failure;
-
+        
         var ctx = new AttackContext
         {
             Animator = EnemyAnimator.Value,

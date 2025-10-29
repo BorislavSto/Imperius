@@ -22,23 +22,26 @@ namespace Combat
         [Header("Melee Exclusive config")] 
         [ShowIf(EConditionOperator.Or, "IsMelee", "IsAllTypes")] 
         [SerializeField] private Collider damageArea;
-
         [ShowIf(EConditionOperator.Or, "IsMelee", "IsAllTypes")] 
         [SerializeField] private DamageRelay dmgRelay;
-
         public Collider DamageArea => damageArea;
         public DamageRelay DmgRelay => dmgRelay;
 
         [Header("Ranged Exclusive config")] 
         [ShowIf(EConditionOperator.Or, "IsRanged", "IsAllTypes")] 
         [SerializeField] private Transform shootOrigin;
-
-        protected AttackData[] AttackDatas = new AttackData[4];
         public Transform ShootOrigin => shootOrigin;
 
+        // IsAttacking checking before trying to attack has to be handled per attack handler,
+        // a bug(?) makes it so if its checked here the second attack (or more) is executed even if IsAttacking should return
+        public bool IsAttacking { get; private set;}
+        
+        protected AttackData[] AttackDatas = new AttackData[4];
+        
         // Track cooldowns by slot index
         private Dictionary<int, float> cooldownTimers = new();
 
+        
         protected void Awake()
         {
             InitializeCooldowns();
@@ -83,7 +86,7 @@ namespace Combat
             }
         }
 
-        protected void AttackByIndex(int slotIndex, AttackContext ctx, System.Action onFinish = null)
+        protected void AttackByIndex(int slotIndex, AttackContext ctx, Action onFinish = null)
         {
             if (slotIndex < 0 || slotIndex >= AttackDatas.Length)
                 return;
@@ -100,6 +103,8 @@ namespace Combat
                 return;
             }
 
+            IsAttacking = true;
+            
             StartCoroutine(attack.ExecuteAttack(ctx, onFinish));
             cooldownTimers[slotIndex] = data.cooldown;
         }
@@ -115,7 +120,6 @@ namespace Combat
                     return;
                 }
             }
-            Debug.Log("No attacks ready!");
         }
 
         public bool IsSlotOnCooldown(int slotIndex)
@@ -164,6 +168,11 @@ namespace Combat
             if (slotIndex < 0 || slotIndex >= AttackDatas.Length)
                 return null;
             return AttackDatas[slotIndex];
+        }
+
+        protected virtual void OnAttackFinished()
+        {
+            IsAttacking = false;
         }
     }
 }

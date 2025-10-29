@@ -62,6 +62,9 @@ namespace Player
                 Debug.Log($"Attack slot {slotIndex} is on cooldown: {remaining:F1}s remaining");
                 return;
             }
+
+            if (IsAttacking)
+                return;
             
             AttackData attackData = AttackDatas[slotIndex];
 
@@ -118,8 +121,9 @@ namespace Player
             return closestEnemy;
         }
 
-        private void OnAttackFinished()
+        protected override void OnAttackFinished()
         {
+            base.OnAttackFinished();
             playerController.ClearRotationToTarget();
         }
         

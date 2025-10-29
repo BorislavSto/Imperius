@@ -19,7 +19,11 @@ namespace Enemies.Combat
             int bestSlotIndex = ChooseAttackSlot(ctx);
 
             if (bestSlotIndex >= 0)
-                AttackByIndex(bestSlotIndex, ctx, onFinish);
+                AttackByIndex(bestSlotIndex, ctx, () =>
+                {
+                    OnAttackFinished();
+                    onFinish?.Invoke();
+                });
             else
                 Debug.Log("No attacks available for enemy!");
         }
@@ -66,6 +70,11 @@ namespace Enemies.Combat
                 score += 10f; // bonus for ranged when far
 
             return score;
+        }
+        
+        protected override void OnAttackFinished()
+        {
+            base.OnAttackFinished();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Player
         
         // Cached animator hashes
         private static readonly int SpeedMagnitudeHash = Animator.StringToHash("SpeedMagnitude");
-        private static readonly int IsDashingHash = Animator.StringToHash("IsDashing");
+        //private static readonly int IsDashingHash = Animator.StringToHash("IsDashing");
         private static readonly int DashTriggerHash = Animator.StringToHash("Dash");
         
         private void Awake()

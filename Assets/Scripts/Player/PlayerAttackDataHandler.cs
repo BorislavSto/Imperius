@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using EventBus;
+using NaughtyAttributes;
 using Player;
 using UnityEngine;
 
@@ -236,7 +237,7 @@ namespace Combat
         }
 
 #if UNITY_EDITOR
-        [ContextMenu("Log Current Attacks")]
+        [Button("LogCurrentAttacks")]
         private void LogCurrentAttacks()
         {
             Debug.Log($"Current Attacks ({currentAttacks.Count}/{maxAttackSlots})");
