@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EventBus;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Core;
 
 namespace UI
 {
@@ -15,7 +16,7 @@ namespace UI
         public SettingsSystem SettingsSystem => settingsSystem;
         public PopupSystem PopupSystem => popupSystem;
         
-        private Stack<Action> escapeActions = new ();
+        private Stack<Action> escapeActions = new();
         private EventBinding<EscapeButtonPressed> escapeBinding;
         private GameObject lastSelectedUIElement;
 

@@ -29,16 +29,19 @@ namespace Editor
         private void OnGUI()
         {
             GUILayout.Label("DevSettings", EditorStyles.boldLabel);
+            GUILayout.Space(10);
 
             bool bootstrapper =
-                EditorGUILayout.Toggle("Enable Bootstrapper Scene Switch on Play", bootstrapperIsEnabled);
+                EditorGUILayout.Toggle("Enable Bootstrapper\nScene Switch on Play", bootstrapperIsEnabled);
             if (bootstrapper != bootstrapperIsEnabled)
             {
                 bootstrapperIsEnabled = bootstrapper;
                 EditorPrefs.SetBool(BootstrapperPrefKey, bootstrapperIsEnabled);
             }
 
-            bool spawnAtZero = EditorGUILayout.Toggle("Enable Spawning Objects At 0,0,0", spawnAtZeroIsEnabled);
+            GUILayout.Space(20);
+            
+            bool spawnAtZero = EditorGUILayout.Toggle("Enable Spawning \n Objects At 0,0,0", spawnAtZeroIsEnabled);
             if (spawnAtZero != spawnAtZeroIsEnabled)
             {
                 spawnAtZeroIsEnabled = spawnAtZero;

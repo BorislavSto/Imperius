@@ -2,6 +2,6 @@ namespace UI
 {
     public class OptionsViewModel : ViewModel
     {
-        public OptionsViewModel(View view, Model model) {}
+        public OptionsViewModel(OptionsView view, OptionsModel model) {}
     }
 }

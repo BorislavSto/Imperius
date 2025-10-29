@@ -9,15 +9,12 @@ namespace Player
         float MoveVertical { get; }
 
         // Actions
-        bool AttackPressed { get; }
+        bool AttackOnePressed { get; }
         bool DashPressed { get; }
         bool InteractPressed { get; }
         bool InventoryPressed { get; }
-        bool Skill1Pressed { get; }
-        bool Skill2Pressed { get; }
-        bool Skill3Pressed { get; }
-
-        // Aiming character
-        Vector3 GetAimDirection(Vector3 originPosition);
+        bool AttackTwoPressed { get; }
+        bool AttackThreePressed { get; }
+        bool AttackFourPressed { get; }
     }
 }

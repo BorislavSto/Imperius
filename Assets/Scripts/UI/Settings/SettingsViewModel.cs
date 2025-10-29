@@ -11,7 +11,7 @@ namespace UI
         
         private Action escapeAction;
         
-        public SettingsViewModel(SettingsView view, SettingsModel model)
+        public SettingsViewModel(SettingsView view, SettingsModel model) : base()
         {
             this.view = view;
             this.model = model;
@@ -23,7 +23,12 @@ namespace UI
 
         public void ShowSettings()
         {
-            
+            view.ShowView();
+        }
+        
+        public void HideSettings()
+        {
+            view.HideView();
         }
         
         public void OnAudioClicked()
@@ -84,7 +89,7 @@ namespace UI
         {
             Debug.Log($"Settings closed");
             view.HideAllSubmenus();
-            view.HideSettings();
+            view.HideView();
         }
     }
 }

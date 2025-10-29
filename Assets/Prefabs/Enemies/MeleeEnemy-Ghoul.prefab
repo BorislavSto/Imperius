@@ -134,6 +134,18 @@ PrefabInstance:
       propertyPath: damageArea
       value: 
       objectReference: {fileID: 3061796418628557539}
+    - target: {fileID: 5939265030058160238, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
+      propertyPath: enemyAttackDatas.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939265030058160238, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
+      propertyPath: 'enemyAttackDatas.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 755b6d8332629d64285f2ea378e8aaa4, type: 2}
+    - target: {fileID: 5939265030058160238, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
+      propertyPath: 'enemyAttackDatas.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 755b6d8332629d64285f2ea378e8aaa4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6361224571235769923, guid: 3f4b4a5c55be27849bea84a402ce690f, type: 3}
