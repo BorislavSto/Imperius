@@ -2,15 +2,13 @@
 
 namespace UI
 {
-    public class MainMenuSystem : MonoBehaviour
+    public class MainMenuSystem : MvvmSystem<MainMenuViewModel>
     {
         [SerializeField] private MainMenuView mainMenuView;
-        
-        private MainMenuViewModel mainMenuViewModel;
 
         void Awake()
         {
-            mainMenuViewModel = new MainMenuViewModel(mainMenuView, new MainMenuModel());
+            viewModel = new MainMenuViewModel(mainMenuView, new MainMenuModel());
         }
     }
 }

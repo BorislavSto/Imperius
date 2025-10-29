@@ -21,13 +21,18 @@ namespace Combat
         {
             if (hitEffectPrefab != null)
             {
-                Instantiate(hitEffectPrefab, hitPoint, Quaternion.LookRotation(hitNormal));
-            }
+                Quaternion rotation;
 
-            if (destroyOnHit)
-            {
-                Destroy(gameObject);
+                if (hitNormal == Vector3.zero)
+                    rotation = Quaternion.identity;
+                else
+                    rotation = Quaternion.LookRotation(hitNormal);
+
+                Instantiate(hitEffectPrefab, hitPoint, rotation);
             }
+            
+            if (destroyOnHit)
+                Destroy(gameObject);
         }
     }
 }

@@ -32,6 +32,75 @@ Transform:
   - {fileID: 2223669571300520096}
   m_Father: {fileID: 8693306255102487165}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1955312827015757336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6558578280337723564}
+  - component: {fileID: 7363678600892998481}
+  - component: {fileID: 6037909449242153855}
+  m_Layer: 0
+  m_Name: Sensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6558578280337723564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955312827015757336}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8693306255102487165}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &7363678600892998481
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955312827015757336}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6037909449242153855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955312827015757336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d688b7b3a0a9bc46906186469238269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sensor
+  detectionRadius: 5
+  targetTags:
+  - Player
 --- !u!1 &3392406191888648832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2765,6 +2834,9 @@ MonoBehaviour:
   terrainLayer:
     serializedVersion: 2
     m_Bits: 128
+  layerToHit:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &6563483743353659518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2775,17 +2847,15 @@ GameObject:
   m_Component:
   - component: {fileID: 8693306255102487165}
   - component: {fileID: 3531216841275819980}
-  - component: {fileID: 3703149251412769304}
   - component: {fileID: 6339518060745418198}
   - component: {fileID: 7233237054429466281}
   - component: {fileID: 1656150966409623016}
-  - component: {fileID: 4951961599083799106}
   - component: {fileID: 4598081398298821763}
   - component: {fileID: 2683900657892680975}
   - component: {fileID: 3141130663381394205}
   m_Layer: 6
   m_Name: BaseEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2804,6 +2874,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8830759872648806237}
+  - {fileID: 6558578280337723564}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3531216841275819980
@@ -2829,27 +2900,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!135 &3703149251412769304
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6563483743353659518}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &6339518060745418198
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2935,7 +2985,7 @@ MonoBehaviour:
           m_Value0: 17172471437823481780
           m_Value1: 16275498969604528579
         Name: EnemySensor
-        m_Value: {fileID: 4951961599083799106}
+        m_Value: {fileID: 6037909449242153855}
 --- !u!114 &1656150966409623016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2950,21 +3000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
   enemyGraph: {fileID: 7233237054429466281}
   enemyData: {fileID: 0}
---- !u!114 &4951961599083799106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6563483743353659518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d688b7b3a0a9bc46906186469238269, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sensor
-  detectionRadius: 5
-  targetTags:
-  - Player
+  sensor: {fileID: 6037909449242153855}
 --- !u!114 &4598081398298821763
 MonoBehaviour:
   m_ObjectHideFlags: 0

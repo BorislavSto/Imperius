@@ -7,13 +7,14 @@ namespace Combat
         public Animator Animator;
         public AudioSource Audio;
         public GameObject Attacker;
-        public Transform Target;
+        public Vector3 TargetLocation = Vector3.zero;
 
-        public void FaceTarget()
+        public void FaceTarget() // TODO: has to be changed. Attack context should not take care of the rotation
         {
-            if (Target is null || Attacker is null) return;
+            if (TargetLocation == Vector3.zero || Attacker is null) 
+                return;
 
-            Vector3 dir = (Target.position - Attacker.transform.position).normalized;
+            Vector3 dir = (TargetLocation - Attacker.transform.position).normalized;
             dir.y = 0;
 
             if (dir.sqrMagnitude > 0.001f)

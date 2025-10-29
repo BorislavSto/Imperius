@@ -24,20 +24,24 @@ namespace Combat
         {
             ctx.FaceTarget();
 
-            if (currentData is null) throw new ArgumentNullException(nameof(currentData));
+            if (currentData is null) 
+                throw new ArgumentNullException(nameof(currentData));
 
             if (!string.IsNullOrEmpty(currentData.animationTrigger))
                 ctx.Animator?.SetTrigger(currentData.animationTrigger);
 
-            if (ctx.Audio && currentData.sfx) ctx.Audio.PlayOneShot(currentData.sfx);
+            if (ctx.Audio && currentData.sfx) 
+                ctx.Audio.PlayOneShot(currentData.sfx);
 
             yield return new WaitForSeconds(currentData.windup);
 
-            if (damager is not null) damager.EnableDamage(currentData, ctx.Attacker);
+            if (damager is not null)
+                damager.EnableDamage(currentData, ctx.Attacker);
 
             yield return new WaitForSeconds(currentData.hitboxActiveTime);
 
-            if (damager is not null) damager.DisableDamage();
+            if (damager is not null)
+                damager.DisableDamage();
 
             yield return new WaitForSeconds(currentData.recovery);
 

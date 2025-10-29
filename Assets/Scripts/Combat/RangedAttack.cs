@@ -6,7 +6,7 @@ namespace Combat
 {
     public class RangedAttack : Attack
     {
-        [SerializeField] private Transform shootOrigin;
+        private Transform shootOrigin;
         protected RangedAttackData currentData;
 
         public RangedAttack(AttackData data, Transform shootOrigin) : base(data)
@@ -19,18 +19,20 @@ namespace Combat
         {
             ctx.FaceTarget();
 
-            if (currentData is null) throw new ArgumentNullException(nameof(currentData));
+            if (currentData is null) 
+                throw new ArgumentNullException(nameof(currentData));
 
             if (!string.IsNullOrEmpty(currentData.animationTrigger))
                 ctx.Animator?.SetTrigger(currentData.animationTrigger);
 
-            if (ctx.Audio && currentData.sfx) ctx.Audio.PlayOneShot(currentData.sfx);
+            if (ctx.Audio && currentData.sfx) 
+                ctx.Audio.PlayOneShot(currentData.sfx);
 
             yield return new WaitForSeconds(currentData.windup);
 
-            if (currentData.projectilePrefab is not null && ctx.Target is not null)
+            if (currentData.projectilePrefab is not null)
             {
-                Vector3 baseDir = (ctx.Target.position - shootOrigin.position).normalized;
+                Vector3 baseDir = (ctx.TargetLocation - shootOrigin.position).normalized;
 
                 for (int i = 0; i < currentData.projectileCount; i++)
                 {

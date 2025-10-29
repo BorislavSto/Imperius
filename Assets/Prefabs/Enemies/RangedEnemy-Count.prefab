@@ -95,6 +95,18 @@ PrefabInstance:
       propertyPath: shootOrigin
       value: 
       objectReference: {fileID: 3105608376620667674}
+    - target: {fileID: 6337264392294515200, guid: a012ce33435213f42967fe6339cd7cf2, type: 3}
+      propertyPath: enemyAttackDatas.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337264392294515200, guid: a012ce33435213f42967fe6339cd7cf2, type: 3}
+      propertyPath: 'enemyAttackDatas.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bc257ce986bf7b54fbc315be28dbfa88, type: 2}
+    - target: {fileID: 6337264392294515200, guid: a012ce33435213f42967fe6339cd7cf2, type: 3}
+      propertyPath: 'enemyAttackDatas.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bc257ce986bf7b54fbc315be28dbfa88, type: 2}
     - target: {fileID: 8306298673729594561, guid: a012ce33435213f42967fe6339cd7cf2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.871

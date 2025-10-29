@@ -24,7 +24,7 @@ namespace EventBus
             }
         }
 
-        static void Clear()
+        static void ClearAllBindings()
         {
             Debug.Log($"Clearing {typeof(T).Name} bindings");
             bindings.Clear();

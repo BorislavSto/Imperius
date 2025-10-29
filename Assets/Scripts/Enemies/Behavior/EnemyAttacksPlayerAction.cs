@@ -17,15 +17,15 @@ public partial class EnemyAttacksPlayerAction : Action
 
     protected override Status OnStart()
     {
-        if (Agent.Value is null || Target.Value is null || Attack.Value is null)
+        if (Agent.Value is null || Target.Value is null || Attack.Value is null || Attack.Value.IsAttacking)
             return Status.Failure;
-
+        
         var ctx = new AttackContext
         {
             Animator = EnemyAnimator.Value,
             Audio = Agent.Value.GetComponent<AudioSource>(),
             Attacker = Agent.Value,
-            Target = Target.Value.transform,
+            TargetLocation = Target.Value.transform.position,
         };
         
         Attack.Value.Attack(ctx, () => attackFinished = true);
