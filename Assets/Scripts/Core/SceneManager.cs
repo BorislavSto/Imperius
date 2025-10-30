@@ -8,7 +8,7 @@ namespace Core
 {
     public class SceneManager : Singleton<SceneManager>
     {
-        private List<string> currentActiveMainScenes = new() {};
+        private List<string> currentActiveMainScenes = new() { SceneNames.SceneBootstrap };
         
         /// <summary>
         /// This method is only used to load additive scenes that do not replace the current active scene.

@@ -16,14 +16,15 @@ namespace Combat
         {
             this.damager = damager;
             this.damageArea = damageArea;
-            if (damager is not null) damager.DisableDamage();
+            if (damager is not null) 
+                damager.DisableDamage();
             currentData = data as MeleeAttackData;
         }
 
         public override IEnumerator ExecuteAttack(AttackContext ctx, Action onFinished = null)
         {
             ctx.FaceTarget();
-
+            
             if (currentData is null) 
                 throw new ArgumentNullException(nameof(currentData));
 
