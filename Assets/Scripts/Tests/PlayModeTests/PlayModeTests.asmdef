@@ -5,16 +5,18 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Enemies.Combat",
-        "Combat"
+        "Combat",
+        "Core",
+        "DOTween.Modules"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": true,
+    "overrideReferences": false,
     "precompiledReferences": [
         "nunit.framework.dll"
     ],
-    "autoReferenced": false,
+    "autoReferenced": true,
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],

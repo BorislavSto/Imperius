@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Combat;
 using Unity.Behavior;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Enemies.Combat
 {
@@ -10,6 +11,8 @@ namespace Enemies.Combat
         [SerializeField] private BehaviorGraphAgent enemyGraph;
         [SerializeField] private BaseEnemyData enemyData;
         [SerializeField] private Sensor sensor; // reference to be set in inspector so as to not use GetComponentInChildren
+
+        private GameObject patrolPointContainer;
         
         protected override void Start()
         {
@@ -27,11 +30,16 @@ namespace Enemies.Combat
             enemyGraph.BlackboardReference.SetVariableValue("RunningSpeed", enemyData.RunningSpeed);
             enemyGraph.BlackboardReference.SetVariableValue("AttackRange", enemyData.MinAttackRange);
 
+            patrolPointContainer = new GameObject("PatrolPoints");
+            patrolPointContainer.transform.position = transform.position;
+            SceneManager.MoveGameObjectToScene(patrolPointContainer, transform.gameObject.scene);
+            
             List<GameObject> patrolPoints = EnemyPatrolPointsGenerator.GeneratePatrolPoints(
                 transform,
                 10f,
                 5,
-                LayerMask.GetMask("Default")
+                LayerMask.GetMask("Default"),
+                patrolPointContainer.transform
             );
 
             enemyGraph.BlackboardReference.SetVariableValue("PatrolPoints", patrolPoints);
@@ -52,7 +60,14 @@ namespace Enemies.Combat
         protected override void HealthOnDeath()
         {
             Debug.Log("BaseEnemy HealthOnDeath");
+            UninitializeEnemy();
+        }
+
+        public void UninitializeEnemy()
+        {
+            Destroy(patrolPointContainer);
             SetIsDead();
+            Destroy(gameObject);
         }
 
         protected override int SetMaxHealthInHealth() => enemyData.Health;

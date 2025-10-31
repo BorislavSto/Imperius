@@ -44,7 +44,10 @@ namespace Enemies.Combat
             foreach (GameObject enemy in spawnedEnemies)
             {
                 if (enemy != null)
+                {
+                    enemy.GetComponent<BaseEnemy>().UninitializeEnemy();
                     Destroy(enemy);
+                }
             }
 
             spawnedEnemies.Clear();

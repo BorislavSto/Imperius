@@ -19,5 +19,11 @@ namespace Core
                 Destroy(gameObject);
             }
         }
+
+        private void OnDestroy()
+        {
+            if (instance == this)
+                instance = null;
+        }
     }
 }

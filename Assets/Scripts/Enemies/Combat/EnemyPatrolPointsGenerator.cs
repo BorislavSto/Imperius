@@ -5,14 +5,27 @@ namespace Enemies.Combat
 {
     public static class EnemyPatrolPointsGenerator
     {
-        public static List<GameObject> GeneratePatrolPoints(Transform center, float radius, int numPoints,
-            LayerMask groundMask)
+        public static List<GameObject> GeneratePatrolPoints(
+            Transform center, 
+            float radius, 
+            int numPoints,
+            LayerMask groundMask,
+            Transform parentContainer = null)
         {
             List<GameObject> points = new List<GameObject>();
 
             // have them all under one PatrolPointsGO
-            GameObject container = new GameObject("PatrolPoints");
-            container.transform.position = center.position;
+            GameObject container;
+            if (parentContainer != null)
+            {
+                container = parentContainer.gameObject;
+            }
+            else
+            {
+                container = new GameObject("PatrolPoints");
+                container.transform.position = center.position;
+            }
+
 
             for (int i = 0; i < numPoints; i++)
             {

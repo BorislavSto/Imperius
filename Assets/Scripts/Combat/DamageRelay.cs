@@ -15,6 +15,11 @@ namespace Combat
         public event Action<Vector3, Vector3> OnDamageDealt; // hitPoint, hitNormal
         public event Action<Vector3, Vector3> OnTerrainHit; // hitPoint, hitNormal
 
+        public void Init(Collider area)
+        {
+            damageArea = area;
+        }
+        
         public void EnableDamage(AttackData data, GameObject attacker)
         {
             damager = attacker;
