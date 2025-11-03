@@ -119,8 +119,6 @@ namespace PlayModeTests
                 yield return null;
             }
 
-            Debug.Log($"switching scenes ");
-            
             Assert.IsTrue(SceneManager.GetSceneByName(SceneNames.SceneMainMenu).isLoaded, "Bootstrapper should have transitioned to MainMenu");
 
             var bootstrapScene = SceneManager.GetSceneByName(SceneNames.SceneBootstrap);
