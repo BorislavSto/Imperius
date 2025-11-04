@@ -65,13 +65,13 @@ namespace UI
             canvasGroup.DOKill();
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
-            canvasGroup.DOFade(1f, fadeTime);
+            canvasGroup.DOFade(1f, fadeTime).SetLink(canvasGroup.gameObject);
         }
 
         private void FadeOut(float fadeTime)
         {
             canvasGroup.DOKill();
-            canvasGroup.DOFade(0f, fadeTime).OnComplete(OnFadeOutCompleted);
+            canvasGroup.DOFade(0f, fadeTime).OnComplete(OnFadeOutCompleted).SetLink(canvasGroup.gameObject);
         }
 
         private void OnFadeOutCompleted()

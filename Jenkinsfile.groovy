@@ -23,12 +23,12 @@ pipeline{
                     withEnv(["UNITY_PATH=${UNITY_INSTALLATION}"]){
                         // Run EditMode tests
                         bat'''
-                        "%UNITY_PATH%/Unity.exe" -batchmode -projectPath "%WORKSPACE%" -runTests -testPlatform editmode -logFile "%WORKSPACE%/test-results-editmode.log" -testResults editmodetests.xml
+                        "%UNITY_PATH%/Unity.exe" -batchmode -projectPath "%WORKSPACE%" -runTests -testPlatform editmode -logFile "%WORKSPACE%/test-results-editmode.log" -testResults "editmodetests.xml"
                         '''
                         
                         // Run PlayMode tests
                         bat'''
-                        "%UNITY_PATH%/Unity.exe" -batchmode -projectPath "%WORKSPACE%" -runTests -testPlatform playmode -logFile "%WORKSPACE%/test-results-playmode.log" -testResults playmodetests.xml
+                        "%UNITY_PATH%/Unity.exe" -batchmode -projectPath "%WORKSPACE%" -runTests -testPlatform playmode -logFile "%WORKSPACE%/test-results-playmode.log" -testResults "playmodetests.xml"
                         '''
                     }
                 }

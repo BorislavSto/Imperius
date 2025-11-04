@@ -18,8 +18,10 @@ namespace UI
         
         private Stack<Action> escapeActions = new();
         public Action<bool> TriggerLoading; 
+        
         private EventBinding<EscapeButtonPressed> escapeBinding;
         private EventBinding<SceneLoadingEvent> loadingBinding;
+ 
         private GameObject lastSelectedUIElement;
 
         protected override void Awake()

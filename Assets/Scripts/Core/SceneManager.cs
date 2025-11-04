@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using EventBus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -116,7 +117,7 @@ namespace Core
         private IEnumerator LoadMultipleScenesAndUnloadCurrentCoroutine(string[] newScenes, bool waitForInput)
         {
             EventBus<SceneLoadingEvent>.Raise(new SceneLoadingEvent(true));
-            
+
             foreach (string scene in currentActiveMainScenes)
             {
                 if (!string.IsNullOrEmpty(scene))
