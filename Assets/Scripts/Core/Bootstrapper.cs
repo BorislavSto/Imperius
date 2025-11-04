@@ -6,7 +6,7 @@ namespace Core
     {
         private void Start()
         {
-            SceneManager.Instance.LoadSceneAdditive(SceneNames.SceneGlobalUI);
+            SceneManager.Instance.LoadScenesAdditive(new[] { SceneNames.SceneGlobalUI,  SceneNames.SceneLoading }); 
             SceneManager.Instance.LoadSceneAndUnloadCurrent(SceneNames.SceneMainMenu, false);
         }
     }
