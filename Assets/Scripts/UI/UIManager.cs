@@ -17,19 +17,25 @@ namespace UI
         public PopupSystem PopupSystem => popupSystem;
         
         private Stack<Action> escapeActions = new();
+        public Action<bool> TriggerLoading; 
         private EventBinding<EscapeButtonPressed> escapeBinding;
+        private EventBinding<SceneLoadingEvent> loadingBinding;
         private GameObject lastSelectedUIElement;
 
         protected override void Awake()
         {
             base.Awake();
             escapeBinding = new EventBinding<EscapeButtonPressed>(OnEscapePressed);
+            loadingBinding = new EventBinding<SceneLoadingEvent>(OnLoadingTriggered);
             EventBus<EscapeButtonPressed>.Register(escapeBinding);
+            EventBus<SceneLoadingEvent>.Register(loadingBinding);
         }
+
 
         private void OnDestroy()
         {
             EventBus<EscapeButtonPressed>.Deregister(escapeBinding);
+            EventBus<SceneLoadingEvent>.Deregister(loadingBinding);
         }
 
         public void PushEscapeAction(Action action)
@@ -66,6 +72,11 @@ namespace UI
         {
             eventSystem.SetSelectedGameObject(lastSelectedUIElement);
             lastSelectedUIElement = null;
+        }
+        
+        private void OnLoadingTriggered(SceneLoadingEvent obj)
+        {
+            TriggerLoading?.Invoke(obj.IsLoading);
         }
     }
 }
