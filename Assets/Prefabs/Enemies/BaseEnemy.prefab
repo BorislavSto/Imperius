@@ -2834,9 +2834,6 @@ MonoBehaviour:
   terrainLayer:
     serializedVersion: 2
     m_Bits: 128
-  layerToHit:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &6563483743353659518
 GameObject:
   m_ObjectHideFlags: 0
@@ -3025,11 +3022,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdf11f045aa46edb593dc686d66c407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackHandler
-  attackDatas: []
   attackerType: 2
   damageArea: {fileID: 0}
   dmgRelay: {fileID: 0}
   shootOrigin: {fileID: 0}
+  enemyAttackDatas: []
+  enemyEntity: {fileID: 1656150966409623016}
 --- !u!82 &3141130663381394205
 AudioSource:
   m_ObjectHideFlags: 0

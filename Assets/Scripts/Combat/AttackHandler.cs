@@ -33,7 +33,8 @@ namespace Combat
         public Transform ShootOrigin => shootOrigin;
 
         // IsAttacking checking before trying to attack has to be handled per attack handler,
-        // a bug(?) makes it so if its checked here the second attack (or more) is executed even if IsAttacking should return
+        // a bug(?) makes it so if its checked here (and not in a deriving class)
+        // the second attack (or more) is executed even if IsAttacking should return
         public bool IsAttacking { get; private set;}
         
         protected AttackData[] AttackDatas = new AttackData[4];
@@ -41,6 +42,7 @@ namespace Combat
         // Track cooldowns by slot index
         private Dictionary<int, float> cooldownTimers = new();
 
+        protected AttackData CurrentAttackData;
         
         protected void Awake()
         {
@@ -86,31 +88,36 @@ namespace Combat
             }
         }
 
-        protected void AttackByIndex(int slotIndex, AttackContext ctx, Action onFinish = null)
+        protected virtual bool AttackByIndex(int slotIndex, AttackContext ctx, Action onFinish = null)
         {
             if (slotIndex < 0 || slotIndex >= AttackDatas.Length)
-                return;
+                return false;
 
             if (IsSlotOnCooldown(slotIndex))
-                return;
+                return false;
 
             AttackData data = AttackDatas[slotIndex];
             Attack attack = data.CreateAttack(this);
-            
+                
             if (attack == null)
             {
                 Debug.LogError($"Failed to create attack for slot {slotIndex}");
-                return;
+                return false;
             }
 
-            IsAttacking = true;
+            SetIsAttacking(true);
+            
+            // Used by the EnemyAttackHandler to set the time during which the enemy shouldn't move while attacking
+            CurrentAttackData = data;
             
             StartCoroutine(attack.ExecuteAttack(ctx, onFinish));
             cooldownTimers[slotIndex] = data.cooldown;
+
+            return true;
         }
 
         // Only used by the enemy AI - uses first available attack
-        public virtual void Attack(AttackContext ctx, System.Action onFinish = null)
+        public virtual void Attack(AttackContext ctx, Action onFinish = null)
         {
             for (int i = 0; i < AttackDatas.Length; i++)
             {
@@ -169,10 +176,15 @@ namespace Combat
                 return null;
             return AttackDatas[slotIndex];
         }
-
+        
         protected virtual void OnAttackFinished()
         {
-            IsAttacking = false;
+            SetIsAttacking(false);
+        }
+
+        protected virtual void SetIsAttacking(bool isAttacking)
+        {
+            IsAttacking = isAttacking;
         }
     }
 }

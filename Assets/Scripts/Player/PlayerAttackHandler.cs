@@ -16,7 +16,7 @@ namespace Player
         private PlayerInputHandler inputHandler;
         private PlayerController playerController;
         private PlayerCharacter playerCharacter;
-
+        
         private void Start()
         {
             inputHandler = InputManager.Instance.InputHandler;
@@ -26,12 +26,14 @@ namespace Player
             if (playerTransform == null)
                 playerTransform = transform;
 
-            inputHandler.AttackPressedEvent += HandleAttackInput;
+            if (inputHandler)
+                inputHandler.AttackPressedEvent += HandleAttackInput;
         }
 
         private void OnDestroy()
         { 
-            inputHandler.AttackPressedEvent -= HandleAttackInput;
+            if (inputHandler) 
+                inputHandler.AttackPressedEvent -= HandleAttackInput;
         }
 
         private void HandleAttackInput(int attackNumber)
@@ -124,9 +126,16 @@ namespace Player
         protected override void OnAttackFinished()
         {
             base.OnAttackFinished();
+            playerController.ResetAnimation();
             playerController.ClearRotationToTarget();
         }
-        
+
+        protected override void SetIsAttacking(bool isAttacking)
+        {
+            base.SetIsAttacking(isAttacking);
+            playerController.SetAttacking(isAttacking);
+        }
+
         private void OnDrawGizmos()
         {
             if (playerTransform == null)

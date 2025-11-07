@@ -28,13 +28,11 @@ namespace Player
 
         protected override void HealthOnDamaged(float obj)
         {
-            Debug.Log("PlayerCharacter HealthOnDamaged");
             EventBus<PlayerDataEvent>.Raise(new PlayerDataEvent(CreatePlayerGameplayData()));
         }
 
         protected override void HealthOnDeath()
         {
-            Debug.Log("PlayerCharacter HealthOnDeath");
         }
 
         public bool UseMana(int manaUsed)

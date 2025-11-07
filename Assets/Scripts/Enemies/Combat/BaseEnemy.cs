@@ -48,18 +48,15 @@ namespace Enemies.Combat
         protected override void InitializeEntity()
         {
             // this sets up all the components so the components can be used by anything else not just enemies
-            Debug.Log("BaseEnemy InitializeEntity");
             base.InitializeEntity();
         }
 
         protected override void HealthOnDamaged(float damageAmount)
         {
-            Debug.Log("BaseEnemy HealthOnDamaged");
         }
 
         protected override void HealthOnDeath()
         {
-            Debug.Log("BaseEnemy HealthOnDeath");
             UninitializeEnemy();
         }
 
@@ -68,6 +65,11 @@ namespace Enemies.Combat
             Destroy(patrolPointContainer);
             SetIsDead();
             Destroy(gameObject);
+        }
+
+        public void EnemyAttacking(float attackTime)
+        {
+            enemyGraph.BlackboardReference.SetVariableValue("AttackTime", attackTime);
         }
 
         protected override int SetMaxHealthInHealth() => enemyData.Health;

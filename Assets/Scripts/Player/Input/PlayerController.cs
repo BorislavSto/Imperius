@@ -6,6 +6,11 @@ namespace Player
     [RequireComponent(typeof(KinematicCharacterMotor))]
     public class PlayerController : MonoBehaviour, ICharacterController
     {
+        // Cached animator hashes
+        private static readonly int SpeedMagnitudeHash = Animator.StringToHash("SpeedMagnitude");
+        private static readonly int DashTriggerHash = Animator.StringToHash("Dash");
+        private static readonly int ResetTriggerHash = Animator.StringToHash("Reset");
+        
         [Header("Movement Settings")]
         [SerializeField] private float runSpeed = 6f;
         [SerializeField] private float stableMovementSharpness = 15f;
@@ -43,11 +48,10 @@ namespace Player
         private bool isFacingTarget;
         private Vector3 targetDirection;
         
-        // Cached animator hashes
-        private static readonly int SpeedMagnitudeHash = Animator.StringToHash("SpeedMagnitude");
-        //private static readonly int IsDashingHash = Animator.StringToHash("IsDashing");
-        private static readonly int DashTriggerHash = Animator.StringToHash("Dash");
-        
+        // Set by the player attack handler,
+        // used to stop the player from moving when attacking
+        private bool isAttacking;
+
         private void Awake()
         {
             characterMotor = GetComponent<KinematicCharacterMotor>();
@@ -59,9 +63,13 @@ namespace Player
       
         private void Update()
         {
+            UpdateAnimations();
+            
+            if (isAttacking)
+                return;
+            
             HandleInput();
             HandleDash();
-            UpdateAnimations();
         }
 
         private void HandleInput()
@@ -122,7 +130,8 @@ namespace Player
 
         private void UpdateAnimations()
         {
-            if (animator == null) return;
+            if (animator == null) 
+                return;
 
             if (!isDashing)
             {
@@ -131,12 +140,13 @@ namespace Player
                 
                 animator.SetFloat(SpeedMagnitudeHash, normalizedSpeed, animationSpeedDamping, Time.deltaTime);
             }
-            
-            //animator.SetBool(IsDashingHash, isDashing);
         }
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
-        { 
+        {
+            if (isAttacking)
+                currentVelocity = Vector3.zero;
+            
             if (isDashing)
             {
                 ApplyDashVelocity(ref currentVelocity);
@@ -248,6 +258,25 @@ namespace Player
         public void ClearRotationToTarget()
         {
             isFacingTarget = false;
+        }
+        
+        public void SetAttacking(bool attacking)
+        {
+            isAttacking = attacking;
+            
+            if (attacking)
+            {
+                moveInputVector = Vector3.zero;
+                cameraRelativeMoveInput = Vector3.zero;
+
+                characterMotor.ForceUnground();
+            }
+        }
+
+        public void ResetAnimation()
+        {
+            if (animator != null)
+                animator.SetTrigger(ResetTriggerHash);
         }
         
         // ICharacterController interface implementations

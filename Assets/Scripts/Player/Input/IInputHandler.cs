@@ -6,7 +6,10 @@ namespace Player
     {
         // Movement
         float MoveHorizontal { get; }
-        float MoveVertical { get; }
+        float MoveVertical { get; }        
+        
+        // Look
+        Vector2 LookInput { get; }
 
         // Actions
         bool AttackOnePressed { get; }

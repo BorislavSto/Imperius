@@ -22,7 +22,6 @@ namespace UI
             string json = JsonUtility.ToJson(this);
             PlayerPrefs.SetString(SaveKey, json);
             PlayerPrefs.Save();
-            Debug.Log($"Settings saved: {json}");
         }
 
         public override void Load()
@@ -31,11 +30,10 @@ namespace UI
             {
                 string json = PlayerPrefs.GetString(SaveKey);
                 JsonUtility.FromJsonOverwrite(json, this);
-                Debug.Log($"Settings loaded: {json}");
             }
             else
             {
-                Debug.Log("No saved settings, using defaults.");
+                //Debug.Log("No saved settings, using defaults.");
             }
         }
     }

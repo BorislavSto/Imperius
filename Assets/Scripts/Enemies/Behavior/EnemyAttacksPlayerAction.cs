@@ -9,6 +9,7 @@ using Unity.Properties;
 [NodeDescription(name: "Enemy Attacks Player", story: "[Agent] will [Attack] [Target] ,animating with [EnemyAnimator]", category: "Action", id: "7bbdd14cc1f9702b68f98db1bedd5459")]
 public partial class EnemyAttacksPlayerAction : Action
 {
+    private static readonly int Reset = Animator.StringToHash("Reset");
     [SerializeReference] public BlackboardVariable<GameObject> Agent;
     [SerializeReference] public BlackboardVariable<GameObject> Target;
     [SerializeReference] public BlackboardVariable<AttackHandler> Attack;
@@ -31,6 +32,12 @@ public partial class EnemyAttacksPlayerAction : Action
         Attack.Value.Attack(ctx, () => attackFinished = true);
 
         return Status.Running;
+    }
+
+    private void OnAttackFinished()
+    {
+        EnemyAnimator.Value.SetTrigger(Reset);
+        attackFinished = true;
     }
 
     protected override Status OnUpdate()

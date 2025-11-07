@@ -7,6 +7,7 @@ namespace Enemies.Combat
     public class EnemyAttackHandler : AttackHandler
     {
         [SerializeField] private AttackData[] enemyAttackDatas;
+        [SerializeField] private BaseEnemy enemyEntity;
 
         private new void Awake()
         {
@@ -26,6 +27,19 @@ namespace Enemies.Combat
                 });
             else
                 Debug.Log("No attacks available for enemy!");
+        }
+
+        protected override bool AttackByIndex(int slotIndex, AttackContext ctx, Action onFinish = null)
+        {
+            bool success = base.AttackByIndex(slotIndex, ctx, onFinish);
+
+            if (!success)
+                return false;
+            
+            enemyEntity.EnemyAttacking(CurrentAttackData.windup + CurrentAttackData.recovery);
+            CurrentAttackData = null;
+
+            return true;
         }
 
         private int ChooseAttackSlot(AttackContext ctx)
@@ -70,11 +84,6 @@ namespace Enemies.Combat
                 score += 10f; // bonus for ranged when far
 
             return score;
-        }
-        
-        protected override void OnAttackFinished()
-        {
-            base.OnAttackFinished();
         }
     }
 }

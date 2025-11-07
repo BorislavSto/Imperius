@@ -16,7 +16,8 @@ namespace Combat
         public int damage = 10;
         public int manaCost = 20;
         public LayerMask hitMask;
-        public AudioClip sfx;
+        public AudioClip castSfx;
+        public AudioClip hitSfx;
 
         public abstract Attack CreateAttack(AttackHandler attackHandler);
     }

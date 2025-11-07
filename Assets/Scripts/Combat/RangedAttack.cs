@@ -25,15 +25,17 @@ namespace Combat
             if (!string.IsNullOrEmpty(currentData.animationTrigger))
                 ctx.Animator?.SetTrigger(currentData.animationTrigger);
 
-            if (ctx.Audio && currentData.sfx) 
-                ctx.Audio.PlayOneShot(currentData.sfx);
+            if (ctx.Audio && currentData.castSfx) 
+                ctx.Audio.PlayOneShot(currentData.castSfx);
 
             yield return new WaitForSeconds(currentData.windup);
 
             if (currentData.projectilePrefab is not null)
             {
-                Vector3 baseDir = (ctx.TargetLocation - shootOrigin.position).normalized;
-
+                // targetPos is adjusted, the TargetLocation is the root, to which we add to aim higher/~at the torso
+                Vector3 targetPos = ctx.TargetLocation + Vector3.up * 1.2f; 
+                Vector3 baseDir = (targetPos - shootOrigin.position).normalized;
+                
                 for (int i = 0; i < currentData.projectileCount; i++)
                 {
                     Vector3 shootDir = baseDir;
@@ -56,8 +58,10 @@ namespace Combat
                         rb.useGravity = false;
                         rb.linearVelocity = shootDir * currentData.projectileSpeed;
                     }
-
-                    UnityEngine.Object.Destroy(proj, currentData.projectileLifetime);
+                    
+                    Projectile projectile = proj.GetComponent<Projectile>();
+                    projectile.SetSound(currentData.hitSfx);
+                    projectile.DestroyAfterLifetime(currentData.projectileLifetime);
                 }
             }
 
