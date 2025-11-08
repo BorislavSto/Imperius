@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 778576787489952914}
   - component: {fileID: 6970490600065701550}
   - component: {fileID: 3750908990972149523}
+  - component: {fileID: 1278008126627565794}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3731344537950159985}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.39350575, y: 0.21824381, z: -0.09673516, w: 0.8877867}
+  m_LocalRotation: {x: 0.017257737, y: -0.693162, z: 0.016605597, w: 0.7203839}
   m_LocalPosition: {x: -3.387473, y: 10.850517, z: -6.0335245}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -105,6 +106,36 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &1278008126627565794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3731344537950159985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7de3aefa901374ba29464584a3109a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineDecollider
+  CameraRadius: 0.4
+  Decollision:
+    Enabled: 1
+    ObstacleLayers:
+      serializedVersion: 2
+      m_Bits: 129
+    UseFollowTarget:
+      Enabled: 0
+      YOffset: 0
+    Damping: 0.5
+    SmoothingTime: 0
+  TerrainResolution:
+    Enabled: 1
+    TerrainLayers:
+      serializedVersion: 2
+      m_Bits: 1
+    MaximumRaycast: 10
+    Damping: 0.5
 --- !u!1 &5002541321291776083
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002541321291776083}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3935057, y: 0.21824381, z: -0.09673516, w: 0.88778675}
+  m_LocalRotation: {x: 0.017257735, y: -0.6931621, z: 0.0166056, w: 0.7203838}
   m_LocalPosition: {x: -3.387473, y: 10.850517, z: -6.0335245}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -284,6 +315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6593462084549331535}
+  - component: {fileID: 2302753603991163027}
   m_Layer: 0
   m_Name: ==CAMERA==
   m_TagString: Untagged
@@ -308,3 +340,75 @@ Transform:
   - {fileID: 778576787489952914}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2302753603991163027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6161952096544799654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466f82a8a7125b742b3f37e371bae727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Player::PlayerCamera
+  virtualCamera: {fileID: 6970490600065701550}
+  followTarget: {fileID: 0}
+  mouseSensitivity: 0.5
+  gamepadSensitivity: 150
+  minDistance: 6
+  maxDistance: 10
+  verticalAngleLimit: {x: -20, y: 30}
+  heightOffset: 1.5
+  maxLookAheadDistance: 3
+  lookAheadCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  distanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  useGamepadSmoothing: 1
+  smoothSpeed: 10
+  rotationSmoothing: 10
