@@ -8,14 +8,11 @@ namespace Combat
     {
         [Tooltip("The DamageRelay has to be put on the collider object, this is melee attack specific")]
         private DamageRelay damager;
-
-        private Collider damageArea;
         private MeleeAttackData currentData;
 
-        public MeleeAttack(AttackData data, DamageRelay damager, Collider damageArea) : base(data)
+        public MeleeAttack(AttackData data, DamageRelay damager) : base(data)
         {
             this.damager = damager;
-            this.damageArea = damageArea;
             if (damager is not null) 
                 damager.DisableDamage();
             currentData = data as MeleeAttackData;
@@ -31,8 +28,8 @@ namespace Combat
             if (!string.IsNullOrEmpty(currentData.animationTrigger))
                 ctx.Animator?.SetTrigger(currentData.animationTrigger);
 
-            if (ctx.Audio && currentData.sfx) 
-                ctx.Audio.PlayOneShot(currentData.sfx);
+            if (ctx.Audio && currentData.castSfx) 
+                ctx.Audio.PlayOneShot(currentData.castSfx);
 
             yield return new WaitForSeconds(currentData.windup);
 

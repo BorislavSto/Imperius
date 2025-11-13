@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UI
 {
-    public class Model
+    public abstract class Model
     {
-        public virtual void Load(){}
-        public virtual void Save(){}
+        public abstract void Load();
+        public abstract void Save();
     }
 
     public class View : MonoBehaviour

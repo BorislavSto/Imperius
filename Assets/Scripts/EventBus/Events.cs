@@ -19,7 +19,7 @@ namespace EventBus
         public readonly bool IsLoading;
         public SceneLoadingEvent(bool isLoading)
         {
-            this.IsLoading = isLoading;
+            IsLoading = isLoading;
         }
     }
 }

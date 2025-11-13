@@ -75,6 +75,7 @@ namespace Core
                     bool pressed = false;
 
                     var binding = new EventBinding<AnyButtonPressed>(_ => pressed = true);
+                    
                     EventBus<AnyButtonPressed>.Register(binding);
 
                     yield return new WaitUntil(() => pressed);
@@ -92,7 +93,6 @@ namespace Core
             {
                 if (!string.IsNullOrEmpty(scene))
                 {
-                    Debug.Log($"Unloading {scene}");
                     AsyncOperation unloadOp = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene);
                     if (unloadOp != null)
                     {
@@ -122,7 +122,6 @@ namespace Core
             {
                 if (!string.IsNullOrEmpty(scene))
                 {
-                    Debug.Log($"Unloading {scene}");
                     AsyncOperation unloadOp = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(scene);
                     if (unloadOp != null)
                     {

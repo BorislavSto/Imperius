@@ -12,13 +12,35 @@ namespace Player
         public event Action AnyPressedEvent;
         
         // Gameplay Events
-        private Action<InputAction.CallbackContext> movePerformed;
-        private Action<InputAction.CallbackContext> moveCanceled;
         public event Action InteractPressedEvent;
         public event Action<int> AttackPressedEvent;
         
+        // UI Events
+        public event Action CancelPressedEvent;        
+        public event Action SubmitPressedEvent;        
+
+        // Public Variables
+        public float MoveHorizontal => moveInput.x;
+        public float MoveVertical => moveInput.y;
+        public Vector2 LookInput => lookInput;
+        public bool AttackOnePressed => Consume(ref attackOnePressed);
+        public bool AttackTwoPressed => Consume(ref attackTwoPressed);
+        public bool AttackThreePressed => Consume(ref attackThreePressed);
+        public bool AttackFourPressed => Consume(ref attackFourPressed);
+        public bool DashPressed => Consume(ref dashPressed);
+        public bool InteractPressed => Consume(ref interactPressed);
+        public bool InventoryPressed => Consume(ref inventoryPressed);
+        
+        // Private Events
+        private Action<InputAction.CallbackContext> movePerformed;
+        private Action<InputAction.CallbackContext> moveCanceled;
+        
+        private Action<InputAction.CallbackContext> lookPerformed;
+        private Action<InputAction.CallbackContext> lookCanceled;
+    
         // Gameplay Variables
         private Vector2 moveInput;
+        private Vector2 lookInput;
         private bool attackOnePressed;
         private bool attackTwoPressed;
         private bool attackThreePressed;
@@ -26,11 +48,7 @@ namespace Player
         private bool dashPressed;
         private bool interactPressed;
         private bool inventoryPressed;
-        
-        // UI Events
-        public event Action CancelPressedEvent;        
-        public event Action SubmitPressedEvent;        
-        
+
         private void OnEnable()
         {
             playerInput = new PlayerInputActions();
@@ -43,9 +61,14 @@ namespace Player
             movePerformed = ctx => moveInput = ctx.ReadValue<Vector2>();
             moveCanceled = ctx => moveInput = Vector2.zero;
             
+            lookPerformed = ctx => lookInput = ctx.ReadValue<Vector2>();
+            lookCanceled = ctx => lookInput = Vector2.zero;
+
             playerInput.Gameplay.Move.performed += movePerformed;
             playerInput.Gameplay.Move.canceled += moveCanceled;
-        
+            playerInput.Gameplay.Look.performed += lookPerformed; 
+            playerInput.Gameplay.Look.canceled += lookCanceled; 
+            
             playerInput.Gameplay.AttackOne.performed += OnAttackOne;
             playerInput.Gameplay.AttackTwo.performed += OnAttackTwo;
             playerInput.Gameplay.AttackThree.performed += OnAttackThree;
@@ -69,6 +92,8 @@ namespace Player
             // Gameplay Input
             playerInput.Gameplay.Move.performed -= movePerformed;
             playerInput.Gameplay.Move.canceled -= moveCanceled;
+            playerInput.Gameplay.Look.performed -= lookPerformed;
+            playerInput.Gameplay.Look.canceled -= lookCanceled;
         
             playerInput.Gameplay.AttackOne.performed -= OnAttackOne;
             playerInput.Gameplay.AttackTwo.performed -= OnAttackTwo;
@@ -110,6 +135,7 @@ namespace Player
             AttackPressedEvent?.Invoke(3);
             attackFourPressed = true;
         }
+       
         private void OnDash(InputAction.CallbackContext ctx) => dashPressed = true;
 
         private void OnInteract(InputAction.CallbackContext ctx)
@@ -119,19 +145,7 @@ namespace Player
         }
 
         private void OnInventory(InputAction.CallbackContext ctx) => inventoryPressed = true;
-
-
-        public float MoveHorizontal => moveInput.x;
-        public float MoveVertical => moveInput.y;
-        
-        public bool AttackOnePressed => Consume(ref attackOnePressed);
-        public bool AttackTwoPressed => Consume(ref attackTwoPressed);
-        public bool AttackThreePressed => Consume(ref attackThreePressed);
-        public bool AttackFourPressed => Consume(ref attackFourPressed);
-        public bool DashPressed => Consume(ref dashPressed);
-        public bool InteractPressed => Consume(ref interactPressed);
-        public bool InventoryPressed => Consume(ref inventoryPressed);
-        
+       
         // UI Input
         private void OnSubmit(InputAction.CallbackContext ctx) => SubmitPressedEvent?.Invoke();
         private void OnCancel(InputAction.CallbackContext ctx) => CancelPressedEvent?.Invoke();

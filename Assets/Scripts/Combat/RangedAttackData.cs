@@ -10,7 +10,7 @@ namespace Combat
         public float projectileLifetime = 5f;
 
         [Header("Multi-Shot")] public int projectileCount = 1;
-        public float spreadAngle = 0f;
+        public float spreadAngle;
 
         public override Attack CreateAttack(AttackHandler attackHandler)
         {

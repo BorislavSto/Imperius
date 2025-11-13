@@ -25,7 +25,6 @@ public class PlayerInteractor : MonoBehaviour
             IInteractable interactable = hitCollider.GetComponent<IInteractable>();
             if (interactable != null)
             {
-                Debug.Log("Interacting with " + hitCollider.name);
                 interactable.Interact(gameObject);
                 break;
             }

@@ -2,16 +2,14 @@ namespace UI
 {
     public class OptionsModel : Model
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        public override void Load()
         {
-
+            throw new System.NotImplementedException();
         }
 
-        // Update is called once per frame
-        void Update()
+        public override void Save()
         {
-
+            throw new System.NotImplementedException();
         }
     }
 }

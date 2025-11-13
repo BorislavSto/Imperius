@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 5a4f1e930eb16da47acc2eacd5cb1ebb, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: bc58f759ad7199848809f4241739eed5, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -209,7 +209,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850232cae4064668bc3af5a7a8f32e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UI::UI.StatusBarUI
-  statusImage: {fileID: 2511739348368582344}
-  doesRecharge: 0
-  rechargeAmount: 0
-  rechargeRate: 0
+  statusBarImage: {fileID: 0}

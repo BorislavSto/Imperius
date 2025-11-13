@@ -28,13 +28,11 @@ namespace Player
 
         protected override void HealthOnDamaged(float obj)
         {
-            Debug.Log("PlayerCharacter HealthOnDamaged");
             EventBus<PlayerDataEvent>.Raise(new PlayerDataEvent(CreatePlayerGameplayData()));
         }
 
         protected override void HealthOnDeath()
         {
-            Debug.Log("PlayerCharacter HealthOnDeath");
         }
 
         public bool UseMana(int manaUsed)
@@ -75,7 +73,7 @@ namespace Player
 
         private PlayerGameplayData CreatePlayerGameplayData()
         {
-            return new PlayerGameplayData(Health.CurrentHealth, CurrentMana, manaRechargeRate, manaRechargeAmount);
+            return new PlayerGameplayData(health.currentHealth, CurrentMana, manaRechargeRate, manaRechargeAmount);
         }
 
         protected override int SetMaxHealthInHealth() => maxHealth;

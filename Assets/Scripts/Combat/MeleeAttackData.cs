@@ -15,7 +15,7 @@ namespace Combat
                 return null;
             }
 
-            return new MeleeAttack(this, attackHandler.DmgRelay, attackHandler.DamageArea);
+            return new MeleeAttack(this, attackHandler.DmgRelay);
         }
     }
 }

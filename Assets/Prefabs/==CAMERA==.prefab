@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 778576787489952914}
   - component: {fileID: 6970490600065701550}
-  - component: {fileID: 383513522135504696}
   - component: {fileID: 3750908990972149523}
+  - component: {fileID: 1278008126627565794}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3731344537950159985}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32157454, y: 0.09905586, z: -0.03384817, w: 0.9410803}
-  m_LocalPosition: {x: -1.6019208, y: 5.9532084, z: -5.525218}
+  m_LocalRotation: {x: 0.017257737, y: -0.693162, z: 0.016605597, w: 0.7203839}
+  m_LocalPosition: {x: -3.387473, y: 10.850517, z: -6.0335245}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,44 +77,6 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!114 &383513522135504696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3731344537950159985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90eebaab98e4b44b0ba8c79821e554e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineSplineDolly
-  m_SplineSettings:
-    Spline: {fileID: 2778765528491725032}
-    Position: 0.26341784
-    Units: 2
-  SplineOffset: {x: 0, y: 0, z: 0}
-  CameraRotation: 0
-  Damping:
-    Enabled: 0
-    Position: {x: 0, y: 0, z: 0}
-    Angular: 0
-  AutomaticDolly:
-    Enabled: 1
-    Method:
-      rid: 4107794799086534953
-  m_LegacyPosition: -1
-  m_LegacyUnits: 0
-  m_LegacySpline: {fileID: 0}
-  references:
-    version: 2
-    RefIds:
-    - rid: 4107794799086534953
-      type: {class: SplineAutoDolly/NearestPointToTarget, ns: Unity.Cinemachine, asm: Unity.Cinemachine}
-      data:
-        PositionOffset: 0
-        SearchResolution: 4
-        SearchIteration: 5
 --- !u!114 &3750908990972149523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,152 +106,36 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
---- !u!1 &3920742752107060448
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5255501123698240068}
-  - component: {fileID: 2778765528491725032}
-  - component: {fileID: 4420036041406538680}
-  m_Layer: 0
-  m_Name: Dolly Spline
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5255501123698240068
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3920742752107060448}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.74, z: -6.01}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6593462084549331535}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2778765528491725032
+--- !u!114 &1278008126627565794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3920742752107060448}
+  m_GameObject: {fileID: 3731344537950159985}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
+  m_Script: {fileID: 11500000, guid: ca7de3aefa901374ba29464584a3109a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineContainer
-  m_Spline:
-    m_EditModeType: 1
-    m_Knots: []
-    m_MetaData: []
-    m_Closed: 0
-    m_IntData:
-      m_Data: []
-    m_FloatData:
-      m_Data: []
-    m_Float4Data:
-      m_Data: []
-    m_ObjectData:
-      m_Data: []
-  m_Splines:
-  - m_EditModeType: 1
-    m_Knots:
-    - Position:
-        x: -3.97
-        y: -0.19999981
-        z: 0.6700001
-      TangentIn:
-        x: 0
-        y: 0
-        z: -3.6199617
-      TangentOut:
-        x: 0
-        y: 0
-        z: 3.6199617
-      Rotation:
-        value:
-          x: -0.04952652
-          y: 0.73228586
-          z: 0.072243996
-          w: 0.6753409
-    - Position:
-        x: 5.06
-        y: 1.1300001
-        z: 0.07000017
-      TangentIn:
-        x: 0
-        y: 0
-        z: -2.739272
-      TangentOut:
-        x: 0
-        y: 0
-        z: 2.739272
-      Rotation:
-        value:
-          x: -0.05452734
-          y: 0.71825355
-          z: 0.003674155
-          w: 0.69363177
-    - Position:
-        x: 12.4
-        y: 1.1300001
-        z: 0.05000019
-      TangentIn:
-        x: 0
-        y: 0
-        z: -0
-      TangentOut:
-        x: 0
-        y: 0
-        z: 0
-      Rotation:
-        value:
-          x: -0.057666518
-          y: -1.1672782e-10
-          z: 0.044965692
-          w: 0.9973227
-    m_MetaData:
-    - Mode: 2
-      Tension: 0.5
-    - Mode: 2
-      Tension: 0.5
-    - Mode: 2
-      Tension: 0.5
-    m_Closed: 0
-    m_IntData:
-      m_Data: []
-    m_FloatData:
-      m_Data: []
-    m_Float4Data:
-      m_Data: []
-    m_ObjectData:
-      m_Data: []
-  m_Knots:
-    m_KnotsLink: []
---- !u!114 &4420036041406538680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3920742752107060448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5342500578afb24a9b83d6343d32a0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineSplineSmoother
-  AutoSmooth: 1
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineDecollider
+  CameraRadius: 0.4
+  Decollision:
+    Enabled: 1
+    ObstacleLayers:
+      serializedVersion: 2
+      m_Bits: 129
+    UseFollowTarget:
+      Enabled: 0
+      YOffset: 0
+    Damping: 0.5
+    SmoothingTime: 0
+  TerrainResolution:
+    Enabled: 1
+    TerrainLayers:
+      serializedVersion: 2
+      m_Bits: 1
+    MaximumRaycast: 10
+    Damping: 0.5
 --- !u!1 &5002541321291776083
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,8 +164,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002541321291776083}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32157454, y: 0.09905585, z: -0.03384816, w: 0.9410803}
-  m_LocalPosition: {x: -1.6019208, y: 5.9532084, z: -5.525218}
+  m_LocalRotation: {x: 0.017257735, y: -0.6931621, z: 0.0166056, w: 0.7203838}
+  m_LocalPosition: {x: -3.387473, y: 10.850517, z: -6.0335245}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -469,6 +315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6593462084549331535}
+  - component: {fileID: 2302753603991163027}
   m_Layer: 0
   m_Name: ==CAMERA==
   m_TagString: Untagged
@@ -491,6 +338,77 @@ Transform:
   m_Children:
   - {fileID: 7198906396399098552}
   - {fileID: 778576787489952914}
-  - {fileID: 5255501123698240068}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2302753603991163027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6161952096544799654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466f82a8a7125b742b3f37e371bae727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Player::PlayerCamera
+  virtualCamera: {fileID: 6970490600065701550}
+  followTarget: {fileID: 0}
+  mouseSensitivity: 0.5
+  gamepadSensitivity: 150
+  minDistance: 6
+  maxDistance: 10
+  verticalAngleLimit: {x: -20, y: 30}
+  heightOffset: 1.5
+  maxLookAheadDistance: 3
+  lookAheadCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  distanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  useGamepadSmoothing: 1
+  smoothSpeed: 10
+  rotationSmoothing: 10

@@ -198,7 +198,7 @@ namespace PlayModeTests
             health.TakeDamage(hitInfo);
             
             yield return null;
-            Assert.IsTrue(health.CurrentHealth == 0);
+            Assert.IsTrue(health.currentHealth == 0);
         }
     }
 }

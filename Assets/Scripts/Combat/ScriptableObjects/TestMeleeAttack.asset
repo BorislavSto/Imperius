@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d689324fc254f29b77d1981f08d4c45, type: 3}
   m_Name: TestMeleeAttack
   m_EditorClassIdentifier: Assembly-CSharp::MeleeAttackAsset
+  icon: {fileID: 0}
+  attackName: 
   animationTrigger: Attack
   cooldown: 1
   windup: 0.2
   recovery: 0.4
   damage: 10
+  manaCost: 20
   hitMask:
     serializedVersion: 2
     m_Bits: 8
-  sfx: {fileID: 8300000, guid: 9c5af593e0716cd43a64231bcf26b0e5, type: 3}
+  castSfx: {fileID: 8300000, guid: 9c5af593e0716cd43a64231bcf26b0e5, type: 3}
+  hitSfx: {fileID: 8300000, guid: 9c5af593e0716cd43a64231bcf26b0e5, type: 3}
   hitboxActiveTime: 1

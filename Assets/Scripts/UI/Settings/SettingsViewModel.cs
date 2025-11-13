@@ -40,14 +40,14 @@ namespace UI
 
         public void OnVolumeChanged(float value)
         {
-            model.Volume = value;
+            model.volume = value;
             Debug.Log($"Volume changed {value}");
             AudioManager.Instance.AudioMixer.SetFloat("MasterVolume", value);
         }
 
         public void OnMuteChanged(bool isMuted)
         {
-            model.Muted = isMuted;
+            model.muted = isMuted;
             AudioManager.Instance.AudioMixer.SetFloat("MasterVolume", isMuted ? -80f : 0f);
         }
 

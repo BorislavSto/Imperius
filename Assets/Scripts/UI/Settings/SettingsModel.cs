@@ -5,15 +5,15 @@ namespace UI
     public class SettingsModel : Model
     {
         // Audio
-        public float Volume { get; set; } = 1f;
-        public bool Muted { get; set; } = false;
+        public float volume { get; set; } = 1f;
+        public bool muted { get; set; }
 
         // Gameplay
-        public bool ShowHints { get; set; } = true;
+        public bool showHints { get; set; } = true;
 
         // Graphics
-        public bool Fullscreen { get; set; } = true;
-        public int ResolutionIndex { get; set; } = 0;
+        public bool fullscreen { get; set; } = true;
+        public int resolutionIndex { get; set; }
         
         private const string SaveKey = "PlayerSettings";
 
@@ -22,7 +22,6 @@ namespace UI
             string json = JsonUtility.ToJson(this);
             PlayerPrefs.SetString(SaveKey, json);
             PlayerPrefs.Save();
-            Debug.Log($"Settings saved: {json}");
         }
 
         public override void Load()
@@ -31,11 +30,10 @@ namespace UI
             {
                 string json = PlayerPrefs.GetString(SaveKey);
                 JsonUtility.FromJsonOverwrite(json, this);
-                Debug.Log($"Settings loaded: {json}");
             }
             else
             {
-                Debug.Log("No saved settings, using defaults.");
+                //Debug.Log("No saved settings, using defaults.");
             }
         }
     }
