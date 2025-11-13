@@ -24,9 +24,7 @@ namespace Enemies.Combat
             }
 
             foreach (var localPos in spawnPoints)
-            {
                 SpawnEnemyAtPoint(localPos);
-            }
         }
 
         GameObject SpawnEnemyAtPoint(Vector3 localPos)

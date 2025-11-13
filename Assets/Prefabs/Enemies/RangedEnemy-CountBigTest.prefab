@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: 'enemyAttackDatas.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: bc257ce986bf7b54fbc315be28dbfa88, type: 2}
+    - target: {fileID: 7221110276841591527, guid: a012ce33435213f42967fe6339cd7cf2, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6fd1b03cb13cadc47930eb9f36d3ec5b, type: 2}
     - target: {fileID: 8306298673729594561, guid: a012ce33435213f42967fe6339cd7cf2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.871

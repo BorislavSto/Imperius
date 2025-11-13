@@ -16,27 +16,41 @@ namespace Combat
 
     public class Health : MonoBehaviour, IDamageable
     {
-        public int MaxHealth { get; private set; }
-        public int CurrentHealth { get; private set; }
+        private int maxHealth;
+        public int currentHealth { get; private set; }
         
         public event Action<float> OnDamaged;
         public event Action OnDeath;
+        
+        public bool isDead { get; private set; }
 
-        public void Init(int maxHealth)
+        public void Init(int maxHp)
         {
-            MaxHealth = maxHealth;
-            CurrentHealth = maxHealth;
+            maxHealth = maxHp;
+            currentHealth = maxHp;
         }
 
         public void TakeDamage(HitInfo hitInfo)
         {
-            CurrentHealth -= hitInfo.DamageAmount;
-            OnDamaged?.Invoke(CurrentHealth);
+            currentHealth -= hitInfo.DamageAmount;
+            OnDamaged?.Invoke(currentHealth);
 
-            if (CurrentHealth <= 0)
+            if (currentHealth <= 0)
             {
                 OnDeath?.Invoke();
+                isDead = true;
             }
         }
+        
+        public void Heal(int amount)
+        {
+            if (currentHealth + amount > maxHealth)
+                currentHealth = maxHealth;
+            else 
+                currentHealth += amount;
+        }
+        
+        public void SetIsDead() => isDead = true;
+        public void SetIsAlive() => isDead = false;
     }
 }

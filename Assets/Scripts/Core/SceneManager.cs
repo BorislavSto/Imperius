@@ -75,6 +75,7 @@ namespace Core
                     bool pressed = false;
 
                     var binding = new EventBinding<AnyButtonPressed>(_ => pressed = true);
+                    
                     EventBus<AnyButtonPressed>.Register(binding);
 
                     yield return new WaitUntil(() => pressed);

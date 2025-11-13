@@ -73,7 +73,7 @@ namespace Player
 
         private PlayerGameplayData CreatePlayerGameplayData()
         {
-            return new PlayerGameplayData(Health.CurrentHealth, CurrentMana, manaRechargeRate, manaRechargeAmount);
+            return new PlayerGameplayData(health.currentHealth, CurrentMana, manaRechargeRate, manaRechargeAmount);
         }
 
         protected override int SetMaxHealthInHealth() => maxHealth;
